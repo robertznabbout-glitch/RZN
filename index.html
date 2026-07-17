@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <meta
+    name="description"
+    content="RZN is an AI-powered business management platform for sales, inventory, finance, reports and secure team access."
+  />
+
   <title>RZN | Coming Soon</title>
 
   <style>
@@ -13,197 +18,364 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --blue: #44a7ff;
+      --blue-light: #8fd0ff;
+      --text: #ffffff;
+      --muted: #a9b5c7;
+      --border: rgba(105, 180, 255, 0.22);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at 50% 20%, rgba(20, 110, 255, 0.18), transparent 30%),
-        radial-gradient(circle at 20% 80%, rgba(0, 70, 180, 0.12), transparent 35%),
-        linear-gradient(135deg, #02040a, #070b14 45%, #02040a);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 18px;
+        radial-gradient(circle at 50% 15%, rgba(25, 125, 255, 0.2), transparent 32%),
+        radial-gradient(circle at 12% 82%, rgba(0, 85, 190, 0.13), transparent 34%),
+        radial-gradient(circle at 88% 75%, rgba(25, 80, 170, 0.11), transparent 35%),
+        linear-gradient(135deg, #010208 0%, #07101f 50%, #02040a 100%);
+      color: var(--text);
       overflow-x: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 18px;
     }
 
-    .glow {
+    .stars,
+    .stars::before,
+    .stars::after {
       position: fixed;
-      width: 420px;
-      height: 420px;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background-repeat: repeat;
+    }
+
+    .stars {
+      opacity: 0.35;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(68,167,255,0.8) 1px, transparent 1.5px);
+      background-size: 90px 90px, 140px 140px;
+      background-position: 0 0, 35px 45px;
+      animation: starsMove 35s linear infinite;
+    }
+
+    .stars::before {
+      opacity: 0.25;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1.5px);
+      background-size: 180px 180px;
+      background-position: 60px 100px;
+      animation: starsMove 55s linear infinite reverse;
+    }
+
+    .stars::after {
+      opacity: 0.15;
+      background-image:
+        radial-gradient(circle, rgba(68,167,255,0.9) 1px, transparent 2px);
+      background-size: 240px 240px;
+      background-position: 120px 40px;
+      animation: starsMove 75s linear infinite;
+    }
+
+    .orb {
+      position: fixed;
+      width: 480px;
+      height: 480px;
       border-radius: 50%;
-      background: rgba(30, 130, 255, 0.12);
-      filter: blur(90px);
-      top: 8%;
+      background: rgba(35, 135, 255, 0.12);
+      filter: blur(100px);
+      top: 5%;
       left: 50%;
       transform: translateX(-50%);
+      animation: orbPulse 6s ease-in-out infinite;
       pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 940px;
     }
 
     .card {
       position: relative;
-      width: 100%;
-      max-width: 880px;
-      padding: 65px 55px;
-      border-radius: 30px;
-      background: rgba(8, 13, 25, 0.76);
-      border: 1px solid rgba(90, 165, 255, 0.22);
-      box-shadow:
-        0 30px 90px rgba(0, 0, 0, 0.6),
-        0 0 40px rgba(20, 110, 255, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(18px);
       text-align: center;
-      animation: fadeUp 1s ease;
+      padding: 70px 55px 55px;
+      border-radius: 32px;
+      background: linear-gradient(
+        145deg,
+        rgba(10, 18, 34, 0.82),
+        rgba(4, 8, 17, 0.74)
+      );
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.68),
+        0 0 55px rgba(35, 125, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+      animation: entrance 1.1s ease both;
     }
 
     .card::before {
       content: "";
       position: absolute;
-      inset: 0;
-      border-radius: 30px;
-      padding: 1px;
+      top: -120%;
+      left: -40%;
+      width: 35%;
+      height: 320%;
+      transform: rotate(24deg);
       background: linear-gradient(
-        135deg,
-        rgba(55, 150, 255, 0.7),
-        transparent 35%,
-        transparent 65%,
-        rgba(55, 150, 255, 0.35)
+        to right,
+        transparent,
+        rgba(255,255,255,0.07),
+        transparent
       );
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
+      animation: shine 8s ease-in-out infinite;
       pointer-events: none;
     }
 
-    .logo {
-      font-size: clamp(72px, 11vw, 125px);
-      font-weight: 800;
-      letter-spacing: 18px;
-      margin-left: 18px;
-      color: #44a7ff;
-      text-shadow:
-        0 0 18px rgba(68, 167, 255, 0.5),
-        0 0 45px rgba(68, 167, 255, 0.22);
-      margin-bottom: 12px;
+    .badge {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 9px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: var(--blue-light);
+      border: 1px solid rgba(68, 167, 255, 0.3);
+      background: rgba(68, 167, 255, 0.07);
+      text-transform: uppercase;
     }
 
-    .subtitle {
-      color: #c8d3e2;
-      font-size: clamp(16px, 2.2vw, 22px);
-      font-weight: 400;
-      letter-spacing: 1.4px;
-      margin-bottom: 34px;
+    .logo {
+      font-size: clamp(76px, 12vw, 132px);
+      font-weight: 800;
+      letter-spacing: 20px;
+      margin-left: 20px;
+      color: var(--blue);
+      line-height: 1;
+      text-shadow:
+        0 0 18px rgba(68, 167, 255, 0.58),
+        0 0 48px rgba(68, 167, 255, 0.25);
+      animation: logoFloat 4s ease-in-out infinite;
+    }
+
+    .platform {
+      margin-top: 17px;
+      color: #d7e0eb;
+      font-size: clamp(15px, 2vw, 21px);
+      letter-spacing: 1.8px;
+    }
+
+    .divider {
+      width: 70px;
+      height: 2px;
+      margin: 30px auto;
+      border-radius: 100px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--blue),
+        transparent
+      );
+      box-shadow: 0 0 15px rgba(68, 167, 255, 0.6);
     }
 
     .soon {
-      font-size: clamp(34px, 6vw, 58px);
-      letter-spacing: 7px;
-      font-weight: 700;
-      margin-bottom: 22px;
-      background: linear-gradient(90deg, #ffffff, #b9dcff, #ffffff);
+      font-size: clamp(35px, 6vw, 61px);
+      font-weight: 800;
+      letter-spacing: 8px;
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #a6d8ff,
+        #ffffff
+      );
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: textGlow 4s linear infinite;
+    }
+
+    .headline {
+      margin: 25px auto 12px;
+      max-width: 700px;
+      font-size: clamp(21px, 3vw, 30px);
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .headline span {
+      color: var(--blue-light);
     }
 
     .intro {
-      max-width: 620px;
-      margin: 0 auto 35px;
-      color: #9eaabc;
-      font-size: 18px;
+      max-width: 680px;
+      margin: 0 auto 37px;
+      color: var(--muted);
+      font-size: 17px;
       line-height: 1.8;
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      max-width: 720px;
-      margin: 0 auto 38px;
+      max-width: 800px;
+      margin: 0 auto 40px;
     }
 
     .feature {
+      position: relative;
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 17px;
+      border-radius: 17px;
+      color: #dce8f4;
+      line-height: 1.45;
+      font-size: 15px;
       background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(110, 175, 255, 0.13);
-      border-radius: 16px;
-      padding: 16px 18px;
-      color: #d8e3ef;
-      font-size: 16px;
-      transition: 0.3s ease;
+      border: 1px solid rgba(105, 180, 255, 0.13);
+      transition: transform 0.3s ease, border-color 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .feature:hover {
-      transform: translateY(-3px);
-      border-color: rgba(68, 167, 255, 0.55);
-      box-shadow: 0 10px 30px rgba(20, 110, 255, 0.12);
+      transform: translateY(-5px);
+      border-color: rgba(68, 167, 255, 0.6);
+      box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.28),
+        0 0 25px rgba(35, 125, 255, 0.12);
+    }
+
+    .email-label {
+      margin-bottom: 12px;
+      color: #708099;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .email {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 320px;
+      min-width: 330px;
       padding: 17px 28px;
-      border-radius: 14px;
-      border: 1px solid rgba(68, 167, 255, 0.85);
-      color: white;
+      border-radius: 15px;
+      color: #ffffff;
       text-decoration: none;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 650;
       letter-spacing: 0.4px;
+      border: 1px solid rgba(68, 167, 255, 0.82);
       background: linear-gradient(
         135deg,
-        rgba(30, 120, 255, 0.18),
-        rgba(10, 20, 40, 0.55)
+        rgba(35, 130, 255, 0.18),
+        rgba(6, 14, 30, 0.66)
       );
       box-shadow:
-        0 0 0 1px rgba(68, 167, 255, 0.08),
-        0 0 28px rgba(30, 120, 255, 0.14);
+        0 0 25px rgba(35, 125, 255, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
       transition: 0.3s ease;
     }
 
     .email:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(135deg, #1988ff, #0d5fc6);
-      box-shadow: 0 14px 40px rgba(30, 120, 255, 0.32);
+      transform: translateY(-4px) scale(1.01);
+      background: linear-gradient(135deg, #2696ff, #075dc4);
+      box-shadow: 0 16px 42px rgba(30, 125, 255, 0.34);
     }
 
     .footer {
-      margin-top: 28px;
-      color: #627086;
-      font-size: 13px;
-      letter-spacing: 1.6px;
+      margin-top: 33px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.055);
+      color: #59677d;
+      font-size: 12px;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    @keyframes fadeUp {
+    @keyframes entrance {
       from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(28px) scale(0.985);
       }
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
-    @media (max-width: 650px) {
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    @keyframes orbPulse {
+      0%, 100% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.12);
+      }
+    }
+
+    @keyframes shine {
+      0%, 65% {
+        left: -45%;
+      }
+      100% {
+        left: 130%;
+      }
+    }
+
+    @keyframes textGlow {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    @keyframes starsMove {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-180px);
+      }
+    }
+
+    @media (max-width: 760px) {
       .card {
-        padding: 48px 22px;
-        border-radius: 22px;
+        padding: 50px 22px 42px;
+        border-radius: 24px;
       }
 
       .features {
         grid-template-columns: 1fr;
       }
 
-      .email {
-        width: 100%;
-        min-width: 0;
-        font-size: 16px;
+      .feature {
+        min-height: 68px;
       }
 
       .logo {
@@ -214,46 +386,75 @@
       .soon {
         letter-spacing: 4px;
       }
+
+      .email {
+        width: 100%;
+        min-width: 0;
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="glow"></div>
+  <div class="stars"></div>
+  <div class="orb"></div>
 
-  <main class="card">
+  <main class="page">
+    <section class="card">
 
-    <div class="logo">RZN</div>
+      <div class="badge">Innovation in Progress</div>
 
-    <div class="subtitle">
-      AI Business Management Platform
-    </div>
+      <div class="logo">RZN</div>
 
-    <h1 class="soon">COMING SOON</h1>
+      <div class="platform">
+        AI Business Management Platform
+      </div>
 
-    <p class="intro">
-      A smarter generation of business management is on the way.
-      Built to simplify operations, strengthen control and support faster decisions.
-    </p>
+      <div class="divider"></div>
 
-    <section class="features">
-      <div class="feature">AI-Powered Business Management</div>
-      <div class="feature">Sales & Inventory Management</div>
-      <div class="feature">Finance & Debt Tracking</div>
-      <div class="feature">Smart Reports & Analytics</div>
-      <div class="feature">Secure Multi-User Access</div>
-      <div class="feature">Built for Modern Businesses</div>
+      <h1 class="soon">COMING SOON</h1>
+
+      <h2 class="headline">
+        The future of <span>AI business management</span> starts here.
+      </h2>
+
+      <p class="intro">
+        RZN is being built to simplify daily operations, connect every department
+        and give business owners smarter control through secure technology and
+        intelligent insights.
+      </p>
+
+      <div class="features">
+        <div class="feature">AI-Powered Business Management</div>
+        <div class="feature">Sales & Order Management</div>
+        <div class="feature">Inventory & Warehouse Control</div>
+        <div class="feature">Finance & Debt Tracking</div>
+        <div class="feature">Smart Reports & Analytics</div>
+        <div class="feature">Secure Role-Based Access</div>
+      </div>
+
+      <div class="email-label">Business Inquiries</div>
+
+      <a class="email" href="mailto:rznlb.2026@gmail.com">
+        rznlb.2026@gmail.com
+      </a>
+
+      <footer class="footer">
+        RZN © 2026 · Built for the future of business
+      </footer>
+
     </section>
-
-    <a class="email" href="mailto:rznlb.2026@gmail.com">
-      rznlb.2026@gmail.com
-    </a>
-
-    <div class="footer">
-      RZN © 2026
-    </div>
-
   </main>
 
 </body>
