@@ -2,600 +2,919 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    name="description"
+    content="RZN is an AI-powered business management platform for sales, inventory, finance, purchasing, employees and reports."
   >
 
   <title>RZN | AI Business Management Platform</title>
 
-  <meta
-    name="description"
-    content="RZN is an AI-powered business management platform for sales, orders, inventory, finance, debt tracking, reports and secure team access."
-  >
-
-  <meta
-    name="keywords"
-    content="RZN, AI Business Management, ERP, POS, Sales, Inventory, Finance, Reports"
-  >
-
-  <meta name="author" content="RZN">
-  <meta name="theme-color" content="#030712">
-
-  <meta property="og:title" content="RZN | AI Business Management Platform">
-  <meta
-    property="og:description"
-    content="The future of AI business management starts here."
-  >
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://rznlb.com">
-
-  <link
-    rel="icon"
-    href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="%23030712"/><text x="50" y="63" text-anchor="middle" font-size="40" font-family="Arial" font-weight="bold" fill="%2344a7ff">RZN</text></svg>'
-  >
-
   <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1728;
+      --card: rgba(18, 34, 56, 0.88);
+      --card-solid: #122238;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --secondary: #22d3ee;
+      --text: #f8fafc;
+      --muted: #aebed0;
+      --border: rgba(148, 163, 184, 0.18);
+      --success: #22c55e;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+      --radius: 22px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    :root {
-      --background: #02040a;
-      --background-light: #07111f;
-      --blue: #3f9fff;
-      --blue-light: #93d4ff;
-      --white: #ffffff;
-      --text: #dce7f3;
-      --muted: #8e9caf;
-      --border: rgba(90, 170, 255, 0.22);
-    }
-
-    html {
       scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-      overflow-x: hidden;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--white);
       background:
-        radial-gradient(
-          circle at 50% 10%,
-          rgba(30, 125, 255, 0.22),
-          transparent 32%
-        ),
-        radial-gradient(
-          circle at 12% 85%,
-          rgba(0, 90, 210, 0.13),
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 88% 78%,
-          rgba(20, 85, 190, 0.12),
-          transparent 35%
-        ),
-        linear-gradient(
-          135deg,
-          #010208 0%,
-          #07101f 48%,
-          #02040a 100%
-        );
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12), transparent 28%),
+        radial-gradient(circle at 85% 25%, rgba(34, 211, 238, 0.10), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-      background-size: 55px 55px;
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-    }
-
-    .stars,
-    .stars::before,
-    .stars::after {
-      position: fixed;
-      inset: 0;
-      content: "";
-      pointer-events: none;
-      background-repeat: repeat;
-    }
-
-    .stars {
-      opacity: 0.32;
-      background-image:
-        radial-gradient(circle, rgba(255, 255, 255, 0.95) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(63, 159, 255, 0.9) 1px, transparent 1.5px);
-      background-size: 100px 100px, 150px 150px;
-      background-position: 0 0, 40px 45px;
-      animation: starsMove 40s linear infinite;
-    }
-
-    .stars::before {
-      opacity: 0.2;
-      background-image:
-        radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1.5px);
-      background-size: 190px 190px;
-      background-position: 70px 110px;
-      animation: starsMove 60s linear infinite reverse;
-    }
-
-    .stars::after {
-      opacity: 0.13;
-      background-image:
-        radial-gradient(circle, rgba(63, 159, 255, 1) 1px, transparent 2px);
-      background-size: 250px 250px;
-      background-position: 120px 50px;
-      animation: starsMove 80s linear infinite;
-    }
-
-    .orb {
-      position: fixed;
-      top: 3%;
-      left: 50%;
-      width: 520px;
-      height: 520px;
-      border-radius: 50%;
-      transform: translateX(-50%);
-      background: rgba(35, 135, 255, 0.12);
-      filter: blur(105px);
-      pointer-events: none;
-      animation: orbPulse 6s ease-in-out infinite;
-    }
-
-    .page {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 34px 18px;
-    }
-
-    .card {
-      position: relative;
-      width: 100%;
-      max-width: 980px;
-      padding: 64px 54px 46px;
+    body.menu-open {
       overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-alt {
+      background: rgba(7, 17, 31, 0.58);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin: 0 auto 55px;
       text-align: center;
-      border-radius: 32px;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(
-          145deg,
-          rgba(10, 18, 35, 0.88),
-          rgba(3, 8, 18, 0.76)
-        );
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow:
-        0 36px 110px rgba(0, 0, 0, 0.68),
-        0 0 55px rgba(40, 130, 255, 0.09),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      animation: entrance 1s ease both;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      top: -130%;
-      left: -45%;
-      width: 32%;
-      height: 350%;
-      transform: rotate(23deg);
-      pointer-events: none;
-      background:
-        linear-gradient(
-          to right,
-          transparent,
-          rgba(255, 255, 255, 0.075),
-          transparent
-        );
-      animation: shine 8s ease-in-out infinite;
-    }
-
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 32px;
-      pointer-events: none;
-      box-shadow: inset 0 0 80px rgba(30, 120, 255, 0.03);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 25px;
-      padding: 9px 17px;
-      color: var(--blue-light);
-      font-size: 11px;
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.08);
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 2.3px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      border: 1px solid rgba(63, 159, 255, 0.3);
-      border-radius: 100px;
-      background: rgba(63, 159, 255, 0.07);
+      margin-bottom: 18px;
     }
 
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--blue);
-      box-shadow: 0 0 13px var(--blue);
-      animation: dotPulse 1.8s ease-in-out infinite;
+    .section-heading h2 {
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.12;
+      margin-bottom: 18px;
     }
 
-    .logo {
-      margin-left: 19px;
-      color: var(--blue);
-      font-size: clamp(76px, 12vw, 132px);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: 19px;
-      text-shadow:
-        0 0 18px rgba(63, 159, 255, 0.62),
-        0 0 50px rgba(63, 159, 255, 0.27);
-      animation: logoFloat 4s ease-in-out infinite;
+    .section-heading p {
+      color: var(--muted);
+      font-size: 18px;
     }
 
-    .platform {
-      margin-top: 20px;
-      color: #dce7f3;
-      font-size: clamp(15px, 2vw, 21px);
-      font-weight: 400;
-      letter-spacing: 1.7px;
-    }
-
-    .divider {
-      width: 76px;
-      height: 2px;
-      margin: 30px auto;
-      border-radius: 100px;
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          var(--blue),
-          transparent
-        );
-      box-shadow: 0 0 15px rgba(63, 159, 255, 0.65);
-    }
-
-    .coming-soon {
-      color: transparent;
-      font-size: clamp(36px, 6vw, 62px);
-      font-weight: 800;
-      letter-spacing: 8px;
-      background:
-        linear-gradient(
-          90deg,
-          #ffffff,
-          #a5d9ff,
-          #ffffff
-        );
-      background-size: 200% auto;
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
-      animation: textGlow 4s linear infinite;
+      color: transparent;
     }
 
-    .headline {
-      max-width: 740px;
-      margin: 24px auto 13px;
-      font-size: clamp(22px, 3vw, 31px);
-      font-weight: 650;
-      line-height: 1.35;
+    .btn {
+      border: none;
+      border-radius: 14px;
+      padding: 15px 24px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
-    .headline span {
-      color: var(--blue-light);
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.22);
     }
 
-    .intro {
-      max-width: 700px;
-      margin: 0 auto 37px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-3px);
     }
 
-    .features {
-      max-width: 840px;
-      margin: 0 auto 41px;
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid var(--border);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(7, 17, 31, 0.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .nav-content {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-logo {
+      width: 43px;
+      height: 43px;
+      border-radius: 14px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 12px 28px rgba(56, 189, 248, 0.20);
+      color: white;
+      font-size: 16px;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #dbe8f5;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-login {
+      padding: 11px 17px;
+      font-weight: 700;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 24px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 145px 0 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 65px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.26);
+      color: #dff6ff;
+      background: rgba(56, 189, 248, 0.08);
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.12);
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+
+    .hero-description {
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 20px;
+      margin-bottom: 34px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 35px;
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #c8d8e8;
+      font-size: 14px;
+    }
+
+    .check {
+      color: var(--success);
+      font-weight: 900;
+    }
+
+    .dashboard-preview {
+      background: linear-gradient(145deg, rgba(18, 34, 56, 0.96), rgba(9, 20, 35, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transform: perspective(1200px) rotateY(-5deg) rotateX(2deg);
+    }
+
+    .preview-top,
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .preview-title {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+    }
+
+    .status {
+      color: #86efac;
+      font-size: 13px;
+      padding: 6px 10px;
+      background: rgba(34, 197, 94, 0.09);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      border-radius: 999px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 20px 0 15px;
+    }
+
+    .stat-card,
+    .chart-box {
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.032);
+    }
+
+    .stat-card {
+      padding: 18px;
+    }
+
+    .stat-card small,
+    .chart-header span {
+      color: var(--muted);
+    }
+
+    .stat-card strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 25px;
+    }
+
+    .positive {
+      color: #86efac;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .chart-box {
+      padding: 20px;
+    }
+
+    .bars {
+      height: 160px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .bar {
+      width: 12%;
+      border-radius: 9px 9px 3px 3px;
+      background: linear-gradient(to top, var(--primary-dark), var(--secondary));
+      min-height: 25px;
+    }
+
+    .trusted {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.018);
+      padding: 28px 0;
+    }
+
+    .trusted-content {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px 45px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .trusted strong {
+      color: white;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature-card {
+      min-height: 260px;
+      padding: 30px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      transition: 0.28s ease;
+    }
+
+    .feature-card:hover,
+    .module:hover {
+      transform: translateY(-7px);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(56, 189, 248, 0.11);
+      border: 1px solid rgba(56, 189, 248, 0.20);
+      color: var(--primary);
+      font-size: 26px;
+      margin-bottom: 22px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p,
+    .module p,
+    .step p,
+    .role-copy p,
+    .price-card > p,
+    .contact-copy > p,
+    .footer-brand p {
+      color: var(--muted);
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .module {
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px 18px;
+      background: rgba(255, 255, 255, 0.025);
+      transition: 0.24s ease;
+    }
+
+    .module-icon {
+      font-size: 30px;
+      margin-bottom: 13px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      padding: 32px;
+      border-radius: var(--radius);
+      background: var(--card-solid);
+      border: 1px solid var(--border);
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .role-layout,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .role-panel,
+    .contact-card {
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      padding: 24px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .role-item {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      padding: 17px;
+      border-radius: 15px;
+    }
+
+    .role-avatar {
+      min-width: 45px;
+      height: 45px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: rgba(56, 189, 248, 0.10);
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .role-copy h2,
+    .contact-copy h2 {
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.13;
+      margin: 17px 0;
+    }
+
+    .role-benefits,
+    .contact-details {
+      display: grid;
+      gap: 13px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .price-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 25px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-card.featured {
+      border-color: rgba(56, 189, 248, 0.55);
+      transform: translateY(-12px);
+    }
+
+    .price {
+      font-size: 46px;
+      font-weight: 900;
+      margin: 25px 0 6px;
+    }
+
+    .price small,
+    .price-note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .price-list {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      margin: 25px 0 30px;
+      flex: 1;
+    }
+
+    .price-list li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 900;
+      margin-right: 9px;
+    }
+
+    .faq-list {
+      max-width: 850px;
+      margin: auto;
+      display: grid;
+      gap: 13px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.026);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 20px 22px;
+      color: white;
+      border: none;
+      background: transparent;
+      text-align: left;
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      color: var(--muted);
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer p {
+      padding: 0 22px 22px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 220px;
+    }
+
+    .faq-symbol {
+      color: var(--primary);
+      font-size: 22px;
+    }
+
+    .cta-box {
+      padding: 55px;
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(56, 189, 248, 0.17), rgba(2, 132, 199, 0.08)),
+        var(--card-solid);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
       gap: 14px;
     }
 
-    .feature {
-      position: relative;
-      min-height: 96px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 17px;
-      overflow: hidden;
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.45;
-      border: 1px solid rgba(105, 180, 255, 0.14);
-      border-radius: 17px;
+    .contact-detail-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.09);
+      color: var(--primary);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-control {
+      width: 100%;
+      border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.035);
-      transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
+      color: white;
+      border-radius: 13px;
+      padding: 14px 15px;
+      outline: none;
     }
 
-    .feature::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 20%;
-      width: 60%;
-      height: 1px;
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(115, 195, 255, 0.65),
-          transparent
-        );
+    textarea.form-control {
+      min-height: 130px;
+      resize: vertical;
     }
 
-    .feature:hover {
-      transform: translateY(-5px);
-      border-color: rgba(63, 159, 255, 0.58);
-      background: rgba(63, 159, 255, 0.065);
-      box-shadow:
-        0 15px 32px rgba(0, 0, 0, 0.28),
-        0 0 25px rgba(35, 125, 255, 0.12);
+    select.form-control option {
+      color: #111827;
     }
 
-    .contact-label {
-      margin-bottom: 12px;
-      color: #6f7f96;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2.3px;
-      text-transform: uppercase;
+    .form-message {
+      display: none;
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 12px;
+      color: #bff7cd;
+      background: rgba(34, 197, 94, 0.09);
+      border: 1px solid rgba(34, 197, 94, 0.2);
     }
 
-    .email-button {
-      display: inline-flex;
+    footer {
+      border-top: 1px solid var(--border);
+      background: #050c15;
+      padding: 65px 0 22px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 35px;
+      margin-bottom: 45px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      display: grid;
+      gap: 11px;
+      margin-top: 17px;
+    }
+
+    .footer-column a {
+      color: var(--muted);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1500;
+      display: none;
       align-items: center;
       justify-content: center;
-      gap: 11px;
-      min-width: 340px;
-      padding: 17px 28px;
-      color: #ffffff;
-      font-size: 17px;
-      font-weight: 650;
-      letter-spacing: 0.3px;
-      text-decoration: none;
-      border: 1px solid rgba(63, 159, 255, 0.84);
-      border-radius: 15px;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(35, 130, 255, 0.18),
-          rgba(6, 14, 30, 0.7)
-        );
-      box-shadow:
-        0 0 26px rgba(35, 125, 255, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        box-shadow 0.3s ease;
+      padding: 20px;
+      background: rgba(2, 8, 15, 0.78);
+      backdrop-filter: blur(8px);
     }
 
-    .email-button:hover {
-      transform: translateY(-4px) scale(1.01);
-      background:
-        linear-gradient(
-          135deg,
-          #2696ff,
-          #075dc4
-        );
-      box-shadow:
-        0 16px 42px rgba(30, 125, 255, 0.34);
+    .modal.active {
+      display: flex;
     }
 
-    .email-icon {
-      font-size: 20px;
+    .modal-box {
+      width: min(560px, 100%);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: #0d1a2b;
+      padding: 30px;
+      position: relative;
+      box-shadow: var(--shadow);
     }
 
-    .early-access {
-      display: block;
-      width: fit-content;
-      margin: 16px auto 0;
-      color: #8f9db0;
-      font-size: 14px;
-      text-decoration: none;
-      transition: color 0.3s ease;
+    .modal-close {
+      position: absolute;
+      top: 17px;
+      right: 17px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: white;
+      font-size: 21px;
     }
 
-    .early-access:hover {
-      color: var(--blue-light);
+    .modal-subtitle {
+      color: var(--muted);
+      margin: 8px 0 24px;
     }
 
-    .footer {
-      margin-top: 32px;
-      padding-top: 23px;
-      color: #526176;
-      font-size: 11px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      border-top: 1px solid rgba(255, 255, 255, 0.055);
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.7s ease;
     }
 
-    @keyframes entrance {
-      from {
-        opacity: 0;
-        transform: translateY(28px) scale(0.985);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    @keyframes logoFloat {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-7px);
-      }
-    }
-
-    @keyframes orbPulse {
-      0%,
-      100% {
-        opacity: 0.7;
-        transform: translateX(-50%) scale(1);
-      }
-
-      50% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1.12);
-      }
-    }
-
-    @keyframes shine {
-      0%,
-      66% {
-        left: -45%;
-      }
-
-      100% {
-        left: 130%;
-      }
-    }
-
-    @keyframes textGlow {
-      to {
-        background-position: 200% center;
-      }
-    }
-
-    @keyframes starsMove {
-      from {
-        transform: translateY(0);
-      }
-
-      to {
-        transform: translateY(-190px);
-      }
-    }
-
-    @keyframes dotPulse {
-      0%,
-      100% {
-        opacity: 0.6;
-        transform: scale(0.85);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.18);
-      }
-    }
-
-    @media (max-width: 780px) {
-      .page {
-        align-items: flex-start;
-        padding: 18px 12px;
-      }
-
-      .card {
-        padding: 45px 20px 36px;
-        border-radius: 24px;
-      }
-
-      .card::after {
-        border-radius: 24px;
-      }
-
-      .features {
+    @media (max-width: 1050px) {
+      .hero-grid,
+      .role-layout,
+      .contact-grid {
         grid-template-columns: 1fr;
       }
 
-      .feature {
-        min-height: 67px;
+      .dashboard-preview {
+        transform: none;
       }
 
-      .logo {
-        margin-left: 12px;
-        letter-spacing: 12px;
+      .features-grid,
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .coming-soon {
-        letter-spacing: 4px;
+      .modules-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
 
-      .intro {
-        font-size: 15px;
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .menu-toggle {
+        display: grid;
+        place-items: center;
       }
 
-      .email-button {
+      .nav-links {
+        position: fixed;
+        top: 78px;
+        left: 0;
         width: 100%;
-        min-width: 0;
-        padding: 16px 14px;
-        font-size: 15px;
+        height: calc(100vh - 78px);
+        padding: 40px;
+        background: rgba(5, 12, 21, 0.98);
+        flex-direction: column;
+        align-items: flex-start;
+        transform: translateX(100%);
+        transition: 0.3s ease;
+      }
+
+      .nav-links.active {
+        transform: translateX(0);
+      }
+
+      .nav-actions .nav-login,
+      .nav-actions .desktop-demo {
+        display: none;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-box {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
-    @media (max-width: 390px) {
-      .card {
-        padding-left: 15px;
-        padding-right: 15px;
+    @media (max-width: 650px) {
+      .container {
+        width: min(100% - 26px, 1180px);
       }
 
-      .logo {
-        font-size: 67px;
-        letter-spacing: 9px;
-        margin-left: 9px;
+      .section {
+        padding: 75px 0;
       }
 
-      .platform {
-        font-size: 13px;
-        letter-spacing: 1px;
+      .hero {
+        padding-top: 125px;
       }
 
-      .coming-soon {
-        font-size: 31px;
-        letter-spacing: 3px;
+      .hero h1 {
+        font-size: 50px;
       }
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .features-grid,
+      .pricing-grid,
+      .modules-grid,
+      .footer-grid,
+      .form-grid,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+
+      .form-group.full {
+        grid-column: auto;
       }
     }
   </style>
@@ -603,94 +922,683 @@
 
 <body>
 
-  <div class="stars"></div>
-  <div class="orb"></div>
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="#home" class="brand">
+        <div class="brand-logo">R</div>
+        <span>RZN</span>
+      </a>
 
-  <main class="page">
-    <section class="card">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#modules">Solutions</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-      <div class="badge">
-        <span class="badge-dot"></span>
-        Innovation in Progress
+      <div class="nav-actions">
+        <a href="#" class="nav-login" onclick="showLoginMessage(event)">Login</a>
+
+        <button
+          type="button"
+          class="btn btn-primary desktop-demo"
+          onclick="openDemoModal()"
+        >
+          Request Demo
+        </button>
+
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Open navigation menu"
+        >
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+
+        <div class="reveal">
+          <div class="hero-badge">
+            <span class="pulse"></span>
+            Smart business management powered by AI
+          </div>
+
+          <h1>
+            Run your business
+            <span class="gradient-text">smarter.</span>
+          </h1>
+
+          <p class="hero-description">
+            RZN brings sales, inventory, purchasing, finance, employees,
+            customers and intelligent reports together in one secure platform.
+          </p>
+
+          <div class="hero-buttons">
+            <button type="button" class="btn btn-primary" onclick="openDemoModal()">
+              Request a Demo →
+            </button>
+
+            <a href="#features" class="btn btn-secondary">Explore Features</a>
+          </div>
+
+          <div class="hero-points">
+            <span><b class="check">✓</b> Easy setup</span>
+            <span><b class="check">✓</b> Secure role-based access</span>
+            <span><b class="check">✓</b> Works on all devices</span>
+          </div>
+        </div>
+
+        <div class="dashboard-preview reveal">
+          <div class="preview-top">
+            <div class="preview-title">
+              <div class="brand-logo">R</div>
+              Business Overview
+            </div>
+            <div class="status">● Live</div>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <small>Today’s Sales</small>
+              <strong>$12,480</strong>
+              <div class="positive">+18.4% this week</div>
+            </div>
+
+            <div class="stat-card">
+              <small>Net Profit</small>
+              <strong>$4,270</strong>
+              <div class="positive">+11.2% this month</div>
+            </div>
+
+            <div class="stat-card">
+              <small>Active Orders</small>
+              <strong>148</strong>
+              <div class="positive">24 awaiting delivery</div>
+            </div>
+
+            <div class="stat-card">
+              <small>Low Stock Items</small>
+              <strong>7</strong>
+              <div class="positive">AI alerts enabled</div>
+            </div>
+          </div>
+
+          <div class="chart-box">
+            <div class="chart-header">
+              <strong>Sales Performance</strong>
+              <span>Last 7 days</span>
+            </div>
+
+            <div class="bars">
+              <div class="bar" style="height:42%"></div>
+              <div class="bar" style="height:58%"></div>
+              <div class="bar" style="height:49%"></div>
+              <div class="bar" style="height:72%"></div>
+              <div class="bar" style="height:66%"></div>
+              <div class="bar" style="height:89%"></div>
+              <div class="bar" style="height:100%"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="trusted">
+      <div class="container trusted-content">
+        <span>Built for <strong>restaurants</strong></span>
+        <span>Built for <strong>retail</strong></span>
+        <span>Built for <strong>factories</strong></span>
+        <span>Built for <strong>wholesalers</strong></span>
+        <span>Built for <strong>service companies</strong></span>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Powerful Features</span>
+          <h2>
+            Everything your company needs,
+            <span class="gradient-text">in one platform.</span>
+          </h2>
+          <p>
+            Stop switching between different systems. RZN organizes your
+            complete business operation in one connected workspace.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card reveal">
+            <div class="icon-box">✦</div>
+            <h3>AI Business Insights</h3>
+            <p>Turn your business data into recommendations, warnings and growth opportunities.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="icon-box">▦</div>
+            <h3>Real-Time Inventory</h3>
+            <p>Track every product, warehouse movement, purchase and low-stock alert.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="icon-box">$</div>
+            <h3>Financial Management</h3>
+            <p>Monitor invoices, expenses, receivables, payables, cash flow and profit.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="icon-box">◎</div>
+            <h3>Sales and Orders</h3>
+            <p>Create orders quickly and understand sales performance in real time.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="icon-box">👥</div>
+            <h3>Employee Roles</h3>
+            <p>Each employee sees only the information required for their assigned role.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <div class="icon-box">▤</div>
+            <h3>Automated Reports</h3>
+            <p>Receive daily, weekly and monthly reports without manual collection.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="modules">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Complete Business System</span>
+          <h2>
+            Manage every department
+            <span class="gradient-text">with RZN.</span>
+          </h2>
+        </div>
+
+        <div class="modules-grid">
+          <div class="module reveal"><div class="module-icon">🛒</div><h3>Orders</h3><p>Create and track customer orders.</p></div>
+          <div class="module reveal"><div class="module-icon">📦</div><h3>Warehouse</h3><p>Manage stock and product movements.</p></div>
+          <div class="module reveal"><div class="module-icon">📈</div><h3>Sales</h3><p>Monitor performance and revenue.</p></div>
+          <div class="module reveal"><div class="module-icon">🧾</div><h3>Purchasing</h3><p>Manage suppliers and invoices.</p></div>
+          <div class="module reveal"><div class="module-icon">💳</div><h3>Finance</h3><p>Track payments, expenses and profits.</p></div>
+          <div class="module reveal"><div class="module-icon">👤</div><h3>Employees</h3><p>Control users, roles and permissions.</p></div>
+          <div class="module reveal"><div class="module-icon">🤝</div><h3>Customers</h3><p>Keep customer records and balances.</p></div>
+          <div class="module reveal"><div class="module-icon">🧠</div><h3>AI Reports</h3><p>Understand your business automatically.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">How It Works</span>
+          <h2>
+            Start managing your business
+            <span class="gradient-text">in three steps.</span>
+          </h2>
+        </div>
+
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step-number">1</div>
+            <h3>Create Your Company</h3>
+            <p>Add company details, products, suppliers and customers.</p>
+          </div>
+
+          <div class="step reveal">
+            <div class="step-number">2</div>
+            <h3>Add Your Team</h3>
+            <p>Create employee accounts and assign correct permissions.</p>
+          </div>
+
+          <div class="step reveal">
+            <div class="step-number">3</div>
+            <h3>Run and Grow</h3>
+            <p>Follow operations and use AI reports to make better decisions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container role-layout">
+        <div class="role-panel reveal">
+          <div class="role-item"><div class="role-avatar">O</div><div><strong>Company Owner</strong><br><small>Full control</small></div></div>
+          <div class="role-item"><div class="role-avatar">F</div><div><strong>Financial Manager</strong><br><small>Invoices and reports</small></div></div>
+          <div class="role-item"><div class="role-avatar">W</div><div><strong>Warehouse Manager</strong><br><small>Stock and alerts</small></div></div>
+          <div class="role-item"><div class="role-avatar">S</div><div><strong>Sales Employee</strong><br><small>Orders and sales</small></div></div>
+          <div class="role-item"><div class="role-avatar">C</div><div><strong>Cashier</strong><br><small>Orders and payments</small></div></div>
+        </div>
+
+        <div class="role-copy reveal">
+          <span class="eyebrow">Security and Privacy</span>
+          <h2>
+            The right information for
+            <span class="gradient-text">the right employee.</span>
+          </h2>
+          <p>Protect your company by controlling what every employee can see, edit and approve.</p>
+
+          <div class="role-benefits">
+            <span><b class="check">✓</b> Secure login for every user</span>
+            <span><b class="check">✓</b> Custom roles and permissions</span>
+            <span><b class="check">✓</b> Activity tracking</span>
+            <span><b class="check">✓</b> Data protection across devices</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Pricing</span>
+          <h2>
+            Plans designed to grow
+            <span class="gradient-text">with your business.</span>
+          </h2>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card reveal">
+            <h3>Starter</h3>
+            <p>For small companies starting their digital transformation.</p>
+            <div class="price">$29 <small>/ month</small></div>
+            <div class="price-note">One company, one branch</div>
+            <ul class="price-list">
+              <li>Up to 5 users</li>
+              <li>Orders and sales</li>
+              <li>Basic inventory</li>
+              <li>Financial overview</li>
+            </ul>
+            <button class="btn btn-secondary btn-full" onclick="openDemoModal('Starter')">Start with Starter</button>
+          </article>
+
+          <article class="price-card featured reveal">
+            <h3>Business</h3>
+            <p>For growing companies that need full control and automation.</p>
+            <div class="price">$79 <small>/ month</small></div>
+            <div class="price-note">Up to three branches</div>
+            <ul class="price-list">
+              <li>Up to 25 users</li>
+              <li>All management modules</li>
+              <li>Advanced permissions</li>
+              <li>AI reports and alerts</li>
+            </ul>
+            <button class="btn btn-primary btn-full" onclick="openDemoModal('Business')">Choose Business</button>
+          </article>
+
+          <article class="price-card reveal">
+            <h3>Enterprise</h3>
+            <p>For large companies with advanced operational requirements.</p>
+            <div class="price">Custom</div>
+            <div class="price-note">Tailored to your company</div>
+            <ul class="price-list">
+              <li>Unlimited users</li>
+              <li>Multiple branches</li>
+              <li>Custom integrations</li>
+              <li>Dedicated support</li>
+            </ul>
+            <button class="btn btn-secondary btn-full" onclick="openDemoModal('Enterprise')">Contact Sales</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2>Questions about RZN</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question">Does RZN work on phones and computers?<span class="faq-symbol">+</span></button>
+            <div class="faq-answer"><p>Yes. RZN is designed for computers, tablets and mobile phones.</p></div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">Can each employee have different permissions?<span class="faq-symbol">+</span></button>
+            <div class="faq-answer"><p>Yes. The owner controls exactly what every employee can see or edit.</p></div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question">Is the system available now?<span class="faq-symbol">+</span></button>
+            <div class="faq-answer"><p>RZN is currently under development. Businesses can request a demo or join early access.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div>
+            <h2>Ready to transform your business?</h2>
+            <p>Join the RZN early-access list and be among the first companies to experience smarter management.</p>
+          </div>
+
+          <button type="button" class="btn btn-primary" onclick="openDemoModal()">
+            Request Demo
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="eyebrow">Contact RZN</span>
+
+          <h2>
+            Let’s discuss your
+            <span class="gradient-text">business needs.</span>
+          </h2>
+
+          <p>
+            Send us information about your company and we will contact you by email.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-detail-icon">✉</div>
+              <a href="mailto:rznlb.2026@gmail.com">
+                rznlb.2026@gmail.com
+              </a>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">⌂</div>
+              <span>Akkar, Lebanon</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card reveal">
+          <form id="contactForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" class="form-control" required>
+              </div>
+
+              <div class="form-group full">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" class="form-control" required>
+              </div>
+
+              <div class="form-group full">
+                <label for="businessType">Business Type</label>
+                <select id="businessType" class="form-control" required>
+                  <option value="">Choose your business type</option>
+                  <option>Restaurant</option>
+                  <option>Retail Store</option>
+                  <option>Wholesale Company</option>
+                  <option>Factory</option>
+                  <option>Service Company</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="message">How can RZN help?</label>
+                <textarea id="message" class="form-control" required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              Send Request by Email
+            </button>
+
+            <div class="form-message" id="formMessage">
+              Your email request is ready.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="brand">
+            <div class="brand-logo">R</div>
+            <span>RZN</span>
+          </a>
+
+          <p>
+            RZN is building a smarter way for companies to manage operations,
+            teams, finances and growth using modern technology and AI.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#modules">Solutions</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#home">About RZN</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">Early Access</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="mailto:rznlb.2026@gmail.com">
+                rznlb.2026@gmail.com
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="logo">RZN</div>
-
-      <div class="platform">
-        AI Business Management Platform
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> RZN. All rights reserved.</span>
+        <span>AI Business Management Platform</span>
       </div>
+    </div>
+  </footer>
 
-      <div class="divider"></div>
+  <div class="modal" id="demoModal">
+    <div class="modal-box">
+      <button type="button" class="modal-close" onclick="closeDemoModal()">×</button>
 
-      <h1 class="coming-soon">
-        COMING SOON
-      </h1>
+      <h3>Request an RZN Demo</h3>
 
-      <h2 class="headline">
-        The future of
-        <span>AI business management</span>
-        starts here.
-      </h2>
-
-      <p class="intro">
-        RZN is being built to simplify daily operations, connect every
-        department and give business owners smarter control through secure
-        technology and intelligent insights.
+      <p class="modal-subtitle">
+        Complete the information below and send your request to RZN by email.
       </p>
 
-      <div class="features">
-
-        <div class="feature">
-          AI-Powered Business Management
+      <form id="demoForm">
+        <div class="form-group">
+          <label for="demoName">Full Name</label>
+          <input type="text" id="demoName" class="form-control" required>
         </div>
 
-        <div class="feature">
-          Sales &amp; Order Management
+        <div class="form-group">
+          <label for="demoCompany">Company Name</label>
+          <input type="text" id="demoCompany" class="form-control" required>
         </div>
 
-        <div class="feature">
-          Inventory &amp; Warehouse Control
+        <div class="form-group">
+          <label for="demoEmail">Email Address</label>
+          <input type="email" id="demoEmail" class="form-control" required>
         </div>
 
-        <div class="feature">
-          Finance &amp; Debt Tracking
+        <div class="form-group">
+          <label for="demoPlan">Interested Plan</label>
+          <select id="demoPlan" class="form-control" required>
+            <option value="General Demo">General Demo</option>
+            <option value="Starter">Starter</option>
+            <option value="Business">Business</option>
+            <option value="Enterprise">Enterprise</option>
+          </select>
         </div>
 
-        <div class="feature">
-          Smart Reports &amp; Analytics
-        </div>
+        <button type="submit" class="btn btn-primary btn-full">
+          Send Demo Request by Email
+        </button>
+      </form>
+    </div>
+  </div>
 
-        <div class="feature">
-          Secure Role-Based Access
-        </div>
+  <script>
+    const RZN_EMAIL = "rznlb.2026@gmail.com";
 
-      </div>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const demoModal = document.getElementById("demoModal");
+    const demoPlan = document.getElementById("demoPlan");
 
-      <div class="contact-label">
-        Business Inquiries
-      </div>
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
 
-      <a
-        class="email-button"
-        href="mailto:rznlb.2026@gmail.com?subject=RZN%20Business%20Inquiry"
-      >
-        <span class="email-icon">✉</span>
-        rznlb.2026@gmail.com
-      </a>
+    menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+      document.body.classList.toggle("menu-open");
+      menuToggle.textContent =
+        navLinks.classList.contains("active") ? "×" : "☰";
+    });
 
-      <a
-        class="early-access"
-        href="mailto:rznlb.2026@gmail.com?subject=RZN%20Early%20Access%20Request&body=Hello%20RZN%2C%0A%0AI%20would%20like%20to%20request%20early%20access."
-      >
-        Request Early Access →
-      </a>
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        menuToggle.textContent = "☰";
+      });
+    });
 
-      <footer class="footer">
-        © 2026 RZN · Built for the future of business
-      </footer>
+    function openDemoModal(plan = "General Demo") {
+      demoModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+      demoPlan.value = plan;
+    }
 
-    </section>
-  </main>
+    function closeDemoModal() {
+      demoModal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    demoModal.addEventListener("click", function (event) {
+      if (event.target === demoModal) {
+        closeDemoModal();
+      }
+    });
+
+    function showLoginMessage(event) {
+      event.preventDefault();
+      alert("The RZN login system is currently under development.");
+    }
+
+    document.querySelectorAll(".faq-question").forEach(function (button) {
+      button.addEventListener("click", function () {
+        button.parentElement.classList.toggle("active");
+      });
+    });
+
+    document.getElementById("demoForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("demoName").value.trim();
+      const company = document.getElementById("demoCompany").value.trim();
+      const email = document.getElementById("demoEmail").value.trim();
+      const plan = document.getElementById("demoPlan").value;
+
+      const subject = encodeURIComponent("RZN Demo Request - " + company);
+
+      const body = encodeURIComponent(
+        "Hello RZN,\n\n" +
+        "I would like to request a demo.\n\n" +
+        "Name: " + name + "\n" +
+        "Company: " + company + "\n" +
+        "Email: " + email + "\n" +
+        "Interested Plan: " + plan
+      );
+
+      window.location.href =
+        "mailto:" + RZN_EMAIL +
+        "?subject=" + subject +
+        "&body=" + body;
+
+      closeDemoModal();
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("fullName").value.trim();
+      const company = document.getElementById("companyName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const type = document.getElementById("businessType").value;
+      const message = document.getElementById("message").value.trim();
+
+      const subject = encodeURIComponent("RZN Business Request - " + company);
+
+      const body = encodeURIComponent(
+        "Hello RZN,\n\n" +
+        "I am interested in RZN.\n\n" +
+        "Name: " + name + "\n" +
+        "Company: " + company + "\n" +
+        "Email: " + email + "\n" +
+        "Business Type: " + type + "\n\n" +
+        "Message:\n" + message
+      );
+
+      document.getElementById("formMessage").style.display = "block";
+
+      window.location.href =
+        "mailto:" + RZN_EMAIL +
+        "?subject=" + subject +
+        "&body=" + body;
+    });
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealElements.forEach(function (element) {
+      revealObserver.observe(element);
+    });
+  </script>
 
 </body>
 </html>
