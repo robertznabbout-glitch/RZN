@@ -6,33 +6,26 @@
 
   <meta
     name="description"
-    content="RZN is an AI-powered business management platform for sales, inventory, finance, purchasing, customers, employees and intelligent reports."
+    content="RZN is an AI-powered business management platform for sales, inventory, finance, purchasing, employees and reports."
   >
-
-  <meta name="theme-color" content="#07111f">
 
   <title>RZN | AI Business Management Platform</title>
 
   <style>
     :root {
-      --bg: #06101d;
-      --bg-deep: #030914;
-      --surface: #0b1728;
-      --surface-2: #101f34;
-      --surface-3: #142640;
+      --bg: #07111f;
+      --bg-soft: #0b1728;
+      --card: rgba(18, 34, 56, 0.88);
+      --card-solid: #122238;
       --primary: #38bdf8;
       --primary-dark: #0284c7;
-      --cyan: #22d3ee;
+      --secondary: #22d3ee;
       --text: #f8fafc;
-      --muted: #9fb2c8;
-      --border: rgba(148, 163, 184, 0.17);
-      --border-strong: rgba(56, 189, 248, 0.35);
-      --green: #22c55e;
-      --yellow: #fbbf24;
-      --red: #f87171;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+      --muted: #aebed0;
+      --border: rgba(148, 163, 184, 0.18);
+      --success: #22c55e;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
       --radius: 22px;
-      --container: 1200px;
     }
 
     * {
@@ -42,25 +35,18 @@
       scroll-behavior: smooth;
     }
 
-    html {
-      scroll-padding-top: 90px;
-    }
-
     body {
-      font-family:
-        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at 12% 5%, rgba(56, 189, 248, 0.13), transparent 24%),
-        radial-gradient(circle at 92% 12%, rgba(34, 211, 238, 0.08), transparent 26%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12), transparent 28%),
+        radial-gradient(circle at 85% 25%, rgba(34, 211, 238, 0.10), transparent 30%),
+        var(--bg);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    body.menu-open,
-    body.modal-open {
+    body.menu-open {
       overflow: hidden;
     }
 
@@ -71,8 +57,8 @@
 
     button,
     input,
-    textarea,
-    select {
+    select,
+    textarea {
       font: inherit;
     }
 
@@ -81,66 +67,43 @@
     }
 
     .container {
-      width: min(var(--container), calc(100% - 40px));
+      width: min(1180px, calc(100% - 40px));
       margin-inline: auto;
     }
 
     .section {
-      padding: 105px 0;
-      position: relative;
+      padding: 100px 0;
     }
 
     .section-alt {
-      background: rgba(255, 255, 255, 0.018);
+      background: rgba(7, 17, 31, 0.58);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
     .section-heading {
-      max-width: 780px;
-      margin: 0 auto 56px;
+      max-width: 760px;
+      margin: 0 auto 55px;
       text-align: center;
     }
 
-    .section-heading.left {
-      margin-inline: 0;
-      text-align: left;
-    }
-
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 13px;
-      margin-bottom: 18px;
+      display: inline-block;
+      padding: 7px 14px;
+      border: 1px solid rgba(56, 189, 248, 0.28);
       border-radius: 999px;
       color: var(--primary);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      background: rgba(56, 189, 248, 0.07);
-      font-size: 13px;
-      font-weight: 800;
+      background: rgba(56, 189, 248, 0.08);
+      font-size: 14px;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-    }
-
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 16px var(--primary);
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      line-height: 1.12;
+      margin-bottom: 18px;
     }
 
     .section-heading h2 {
-      font-size: clamp(36px, 5vw, 58px);
-      letter-spacing: -0.035em;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.12;
       margin-bottom: 18px;
     }
 
@@ -150,46 +113,39 @@
     }
 
     .gradient-text {
-      background: linear-gradient(90deg, var(--primary), var(--cyan));
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
     .btn {
-      min-height: 50px;
-      padding: 14px 21px;
-      border: 0;
+      border: none;
       border-radius: 14px;
+      padding: 15px 24px;
+      font-weight: 700;
+      transition: 0.25s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      font-weight: 800;
-      transition: 0.25s ease;
     }
 
     .btn-primary {
-      color: white;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      box-shadow: 0 14px 35px rgba(56, 189, 248, 0.22);
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.22);
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover,
+    .btn-secondary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 18px 42px rgba(56, 189, 248, 0.3);
     }
 
     .btn-secondary {
-      color: white;
-      background: rgba(255, 255, 255, 0.045);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.055);
       border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      border-color: var(--border-strong);
-      background: rgba(56, 189, 248, 0.07);
     }
 
     .btn-full {
@@ -202,9 +158,9 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-      background: rgba(3, 9, 20, 0.72);
+      background: rgba(7, 17, 31, 0.72);
       backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
     }
 
     .nav-content {
@@ -212,32 +168,31 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 22px;
+      gap: 20px;
     }
 
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 12px;
       font-size: 27px;
-      font-weight: 950;
-      letter-spacing: 0.06em;
+      font-weight: 900;
+      letter-spacing: 0.04em;
     }
 
-    .brand-mark {
-      width: 44px;
-      height: 44px;
+    .brand-logo {
+      width: 43px;
+      height: 43px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
-      border-radius: 14px;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      box-shadow: 0 12px 28px rgba(56, 189, 248, 0.22);
-      color: #fff;
-      font-weight: 950;
-      font-size: 17px;
+      box-shadow: 0 12px 28px rgba(56, 189, 248, 0.20);
+      color: white;
+      font-size: 16px;
     }
 
-    .brand-word {
+    .brand span {
       color: var(--primary);
     }
 
@@ -251,8 +206,7 @@
     .nav-links a {
       color: #dbe8f5;
       font-size: 15px;
-      font-weight: 700;
-      transition: 0.2s ease;
+      font-weight: 600;
     }
 
     .nav-links a:hover {
@@ -262,51 +216,37 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
     }
 
-    .login-link {
-      padding: 11px 15px;
-      font-weight: 800;
+    .nav-login {
+      padding: 11px 17px;
+      font-weight: 700;
     }
 
     .menu-toggle {
       display: none;
-      width: 45px;
-      height: 45px;
-      border-radius: 13px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.05);
       color: white;
-      font-size: 23px;
+      font-size: 24px;
     }
 
     .hero {
       min-height: 100vh;
-      padding: 145px 0 85px;
+      padding: 145px 0 80px;
       display: flex;
       align-items: center;
-      position: relative;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 540px;
-      height: 540px;
-      border-radius: 50%;
-      top: 80px;
-      right: -180px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.14), transparent 68%);
-      filter: blur(4px);
-      pointer-events: none;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 58px;
+      grid-template-columns: 1.05fr 0.95fr;
       align-items: center;
+      gap: 65px;
     }
 
     .hero-badge {
@@ -314,407 +254,161 @@
       align-items: center;
       gap: 10px;
       padding: 9px 14px;
-      margin-bottom: 24px;
       border-radius: 999px;
-      color: #dcf7ff;
-      background: rgba(56, 189, 248, 0.07);
-      border: 1px solid rgba(56, 189, 248, 0.23);
+      border: 1px solid rgba(56, 189, 248, 0.26);
+      color: #dff6ff;
+      background: rgba(56, 189, 248, 0.08);
+      margin-bottom: 24px;
       font-size: 14px;
-      font-weight: 700;
     }
 
-    .live-dot {
+    .pulse {
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.11);
+      background: var(--success);
+      box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.12);
     }
 
     .hero h1 {
-      max-width: 690px;
-      font-size: clamp(51px, 7vw, 86px);
-      letter-spacing: -0.05em;
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
       margin-bottom: 24px;
     }
 
     .hero-description {
-      max-width: 650px;
+      max-width: 690px;
       color: var(--muted);
       font-size: 20px;
-      margin-bottom: 32px;
+      margin-bottom: 34px;
     }
 
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 13px;
-      margin-bottom: 33px;
+      gap: 14px;
+      margin-bottom: 35px;
     }
 
-    .hero-proof {
+    .hero-points {
       display: flex;
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 20px;
       color: #c8d8e8;
       font-size: 14px;
     }
 
-    .hero-proof span {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     .check {
-      color: var(--green);
-      font-weight: 950;
+      color: var(--success);
+      font-weight: 900;
     }
 
-    .app-window {
-      position: relative;
+    .dashboard-preview {
+      background: linear-gradient(145deg, rgba(18, 34, 56, 0.96), rgba(9, 20, 35, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.18);
       border-radius: 28px;
-      padding: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      background: linear-gradient(145deg, rgba(15, 31, 51, 0.98), rgba(5, 13, 25, 0.98));
+      padding: 22px;
       box-shadow: var(--shadow);
-      transform: perspective(1400px) rotateY(-4deg) rotateX(1.5deg);
+      transform: perspective(1200px) rotateY(-5deg) rotateX(2deg);
     }
 
-    .app-window::before {
-      content: "";
-      position: absolute;
-      inset: -45px;
-      z-index: -1;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.19), transparent 66%);
-      filter: blur(20px);
-    }
-
-    .window-topbar {
-      height: 50px;
+    .preview-top,
+    .chart-header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 0 8px 12px;
+      align-items: center;
+      gap: 20px;
     }
 
-    .window-dots {
-      display: flex;
-      gap: 7px;
-    }
-
-    .window-dots span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #33506e;
-    }
-
-    .window-address {
-      min-width: 210px;
-      padding: 8px 14px;
-      border-radius: 10px;
-      text-align: center;
-      color: #8da4bd;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      font-size: 12px;
-    }
-
-    .app-shell {
-      min-height: 560px;
-      display: grid;
-      grid-template-columns: 165px 1fr;
-      overflow: hidden;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: #07111f;
-    }
-
-    .app-sidebar {
-      padding: 18px 13px;
-      border-right: 1px solid var(--border);
-      background: #081525;
-    }
-
-    .mini-brand {
+    .preview-title {
       display: flex;
       align-items: center;
-      gap: 9px;
-      padding: 5px 8px 18px;
-      font-weight: 900;
-      color: var(--primary);
+      gap: 11px;
+      font-weight: 800;
     }
 
-    .mini-brand .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 11px;
+    .status {
+      color: #86efac;
       font-size: 13px;
+      padding: 6px 10px;
+      background: rgba(34, 197, 94, 0.09);
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      border-radius: 999px;
     }
 
-    .app-nav {
+    .stat-grid {
       display: grid;
-      gap: 6px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 20px 0 15px;
     }
 
-    .app-nav-item {
-      padding: 11px 12px;
-      border-radius: 10px;
-      color: #90a6bd;
+    .stat-card,
+    .chart-box {
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.032);
+    }
+
+    .stat-card {
+      padding: 18px;
+    }
+
+    .stat-card small,
+    .chart-header span {
+      color: var(--muted);
+    }
+
+    .stat-card strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 25px;
+    }
+
+    .positive {
+      color: #86efac;
       font-size: 12px;
-      font-weight: 700;
-    }
-
-    .app-nav-item.active {
-      color: white;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(2, 132, 199, 0.1));
-      border: 1px solid rgba(56, 189, 248, 0.18);
-    }
-
-    .app-main {
-      padding: 19px;
-      background:
-        radial-gradient(circle at 85% 8%, rgba(56, 189, 248, 0.08), transparent 24%),
-        #091523;
-    }
-
-    .app-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 17px;
-    }
-
-    .app-header h3 {
-      font-size: 18px;
-      margin-bottom: 3px;
-    }
-
-    .app-header p {
-      color: #7f95ad;
-      font-size: 11px;
-    }
-
-    .owner-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 9px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--border);
-      font-size: 11px;
-    }
-
-    .owner-avatar {
-      width: 29px;
-      height: 29px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      font-weight: 900;
-    }
-
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .kpi-card {
-      padding: 13px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.027);
-    }
-
-    .kpi-label {
-      color: #7f95ad;
-      font-size: 10px;
-      margin-bottom: 8px;
-    }
-
-    .kpi-value {
-      font-size: 18px;
-      font-weight: 900;
-    }
-
-    .kpi-change {
-      color: #71e49b;
-      font-size: 9px;
       margin-top: 5px;
     }
 
-    .dashboard-row {
-      display: grid;
-      grid-template-columns: 1.35fr 0.65fr;
-      gap: 11px;
-      margin-bottom: 11px;
+    .chart-box {
+      padding: 20px;
     }
 
-    .panel {
-      border-radius: 15px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.026);
-      padding: 14px;
-    }
-
-    .panel-heading {
+    .bars {
+      height: 160px;
       display: flex;
+      align-items: flex-end;
       justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 10px;
+      margin-top: 22px;
     }
 
-    .panel-heading strong {
-      font-size: 12px;
+    .bar {
+      width: 12%;
+      border-radius: 9px 9px 3px 3px;
+      background: linear-gradient(to top, var(--primary-dark), var(--secondary));
+      min-height: 25px;
     }
 
-    .panel-heading span {
-      color: #7f95ad;
-      font-size: 9px;
-    }
-
-    .chart-area {
-      position: relative;
-      height: 145px;
-      display: flex;
-      align-items: flex-end;
-      gap: 7px;
-      padding-top: 10px;
-    }
-
-    .chart-area::before,
-    .chart-area::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: rgba(148, 163, 184, 0.09);
-    }
-
-    .chart-area::before {
-      top: 42px;
-    }
-
-    .chart-area::after {
-      top: 92px;
-    }
-
-    .chart-column {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      height: 100%;
-    }
-
-    .chart-column span {
-      width: 67%;
-      min-height: 20px;
-      border-radius: 6px 6px 2px 2px;
-      background: linear-gradient(to top, var(--primary-dark), var(--cyan));
-      box-shadow: 0 5px 15px rgba(56, 189, 248, 0.14);
-    }
-
-    .alerts {
-      display: grid;
-      gap: 8px;
-    }
-
-    .alert-row {
-      padding: 10px;
-      border-radius: 11px;
-      background: rgba(255, 255, 255, 0.026);
-      border: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .alert-title {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 10px;
-      font-weight: 800;
-      margin-bottom: 3px;
-    }
-
-    .alert-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-    }
-
-    .alert-dot.red { background: var(--red); }
-    .alert-dot.yellow { background: var(--yellow); }
-    .alert-dot.green { background: var(--green); }
-
-    .alert-row small {
-      color: #7890a9;
-      font-size: 9px;
-    }
-
-    .transactions {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 9px;
-    }
-
-    .transactions th {
-      text-align: left;
-      color: #71879f;
-      padding: 7px;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .transactions td {
-      padding: 8px 7px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.07);
-      color: #c7d6e5;
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 4px 7px;
-      border-radius: 999px;
-      font-size: 8px;
-      font-weight: 800;
-    }
-
-    .pill.paid {
-      color: #8ff1b2;
-      background: rgba(34, 197, 94, 0.1);
-    }
-
-    .pill.pending {
-      color: #ffd678;
-      background: rgba(251, 191, 36, 0.1);
-    }
-
-    .trusted-strip {
-      padding: 25px 0;
+    .trusted {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.015);
+      background: rgba(255, 255, 255, 0.018);
+      padding: 28px 0;
     }
 
     .trusted-content {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 18px 42px;
-      text-align: center;
+      gap: 18px 45px;
       color: var(--muted);
+      text-align: center;
     }
 
-    .trusted-content strong {
+    .trusted strong {
       color: white;
     }
 
@@ -725,47 +419,31 @@
     }
 
     .feature-card {
-      min-height: 275px;
-      padding: 29px;
+      min-height: 260px;
+      padding: 30px;
       border-radius: var(--radius);
       border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
-        var(--surface);
-      position: relative;
-      overflow: hidden;
+      background: var(--card);
       transition: 0.28s ease;
     }
 
-    .feature-card::before {
-      content: "";
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      top: -80px;
-      right: -75px;
-      border-radius: 50%;
-      background: rgba(56, 189, 248, 0.08);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--border-strong);
-      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.22);
+    .feature-card:hover,
+    .module:hover {
+      transform: translateY(-7px);
+      border-color: rgba(56, 189, 248, 0.4);
     }
 
     .icon-box {
-      width: 55px;
-      height: 55px;
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
       display: grid;
       place-items: center;
-      margin-bottom: 21px;
-      border-radius: 16px;
+      background: rgba(56, 189, 248, 0.11);
+      border: 1px solid rgba(56, 189, 248, 0.20);
       color: var(--primary);
-      background: rgba(56, 189, 248, 0.09);
-      border: 1px solid rgba(56, 189, 248, 0.18);
-      font-size: 25px;
-      font-weight: 900;
+      font-size: 26px;
+      margin-bottom: 22px;
     }
 
     .feature-card h3 {
@@ -773,296 +451,107 @@
       margin-bottom: 12px;
     }
 
-    .feature-card p {
+    .feature-card p,
+    .module p,
+    .step p,
+    .role-copy p,
+    .price-card > p,
+    .contact-copy > p,
+    .footer-brand p {
       color: var(--muted);
-    }
-
-    .product-showcase {
-      display: grid;
-      grid-template-columns: 0.83fr 1.17fr;
-      gap: 54px;
-      align-items: center;
-    }
-
-    .showcase-copy h2 {
-      font-size: clamp(38px, 5vw, 58px);
-      letter-spacing: -0.04em;
-      margin: 18px 0;
-    }
-
-    .showcase-copy > p {
-      color: var(--muted);
-      font-size: 18px;
-      margin-bottom: 27px;
-    }
-
-    .benefit-list {
-      display: grid;
-      gap: 13px;
-    }
-
-    .benefit-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      color: #d9e6f2;
-    }
-
-    .benefit-check {
-      min-width: 24px;
-      height: 24px;
-      display: grid;
-      place-items: center;
-      border-radius: 8px;
-      color: #8ff1b2;
-      background: rgba(34, 197, 94, 0.09);
-      border: 1px solid rgba(34, 197, 94, 0.16);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .module-window {
-      border-radius: 25px;
-      border: 1px solid var(--border);
-      background: linear-gradient(145deg, #0d1a2c, #07111f);
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
-
-    .module-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .module-tabs {
-      display: flex;
-      gap: 7px;
-    }
-
-    .module-tab {
-      padding: 8px 10px;
-      border-radius: 9px;
-      color: #8399b1;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(148, 163, 184, 0.09);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .module-tab.active {
-      color: white;
-      background: rgba(56, 189, 248, 0.12);
-      border-color: rgba(56, 189, 248, 0.22);
-    }
-
-    .new-sale-btn {
-      padding: 8px 11px;
-      border: 0;
-      border-radius: 9px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .module-body {
-      display: grid;
-      grid-template-columns: 1fr 0.72fr;
-      gap: 12px;
-    }
-
-    .mini-table-card,
-    .invoice-card {
-      border-radius: 15px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.025);
-      padding: 14px;
-    }
-
-    .mini-table-card h4,
-    .invoice-card h4 {
-      margin-bottom: 11px;
-      font-size: 12px;
-    }
-
-    .mini-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 9px;
-    }
-
-    .mini-table td,
-    .mini-table th {
-      padding: 8px 6px;
-      text-align: left;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
-    }
-
-    .mini-table th {
-      color: #768da5;
-    }
-
-    .mini-table td {
-      color: #cedae6;
-    }
-
-    .invoice-summary {
-      display: grid;
-      gap: 10px;
-    }
-
-    .invoice-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding-bottom: 9px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
-      color: #9fb2c8;
-      font-size: 10px;
-    }
-
-    .invoice-total {
-      font-size: 16px;
-      color: white;
-      font-weight: 900;
     }
 
     .modules-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 17px;
+      gap: 18px;
     }
 
-    .module-card {
-      padding: 23px 17px;
-      border-radius: 18px;
+    .module {
       text-align: center;
       border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.024);
+      border-radius: 18px;
+      padding: 25px 18px;
+      background: rgba(255, 255, 255, 0.025);
       transition: 0.24s ease;
     }
 
-    .module-card:hover {
-      transform: translateY(-6px);
-      background: rgba(56, 189, 248, 0.06);
-      border-color: rgba(56, 189, 248, 0.31);
-    }
-
     .module-icon {
-      font-size: 29px;
-      margin-bottom: 12px;
+      font-size: 30px;
+      margin-bottom: 13px;
     }
 
-    .module-card h3 {
-      font-size: 17px;
-      margin-bottom: 6px;
-    }
-
-    .module-card p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .security-layout {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .roles-panel {
-      padding: 24px;
-      border-radius: 25px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .role-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 15px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      transition: 0.2s ease;
-    }
-
-    .role-row + .role-row {
-      margin-top: 7px;
-    }
-
-    .role-row:hover {
-      background: rgba(56, 189, 248, 0.055);
-      border-color: rgba(56, 189, 248, 0.1);
-    }
-
-    .role-avatar {
-      min-width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      color: var(--primary);
-      background: rgba(56, 189, 248, 0.09);
-      font-weight: 900;
-    }
-
-    .role-row strong {
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .role-row small {
-      color: var(--muted);
-    }
-
-    .security-copy h2 {
-      font-size: clamp(38px, 5vw, 57px);
-      letter-spacing: -0.04em;
-      margin: 17px 0;
-    }
-
-    .security-copy > p {
-      color: var(--muted);
-      font-size: 18px;
-      margin-bottom: 26px;
-    }
-
-    .steps-grid {
+    .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      gap: 25px;
     }
 
-    .step-card {
-      padding: 30px;
+    .step {
+      padding: 32px;
       border-radius: var(--radius);
-      background: var(--surface);
+      background: var(--card-solid);
       border: 1px solid var(--border);
     }
 
     .step-number {
-      width: 45px;
-      height: 45px;
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
-      margin-bottom: 21px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      font-weight: 950;
+      font-weight: 900;
+      margin-bottom: 22px;
     }
 
-    .step-card h3 {
-      font-size: 21px;
-      margin-bottom: 10px;
+    .role-layout,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 50px;
+      align-items: center;
     }
 
-    .step-card p {
-      color: var(--muted);
+    .role-panel,
+    .contact-card {
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      padding: 24px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .role-item {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      padding: 17px;
+      border-radius: 15px;
+    }
+
+    .role-avatar {
+      min-width: 45px;
+      height: 45px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: rgba(56, 189, 248, 0.10);
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .role-copy h2,
+    .contact-copy h2 {
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.13;
+      margin: 17px 0;
+    }
+
+    .role-benefits,
+    .contact-details {
+      display: grid;
+      gap: 13px;
     }
 
     .pricing-grid {
@@ -1072,83 +561,48 @@
     }
 
     .price-card {
-      padding: 32px;
-      border-radius: 25px;
       border: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--card);
+      border-radius: 25px;
+      padding: 32px;
       display: flex;
       flex-direction: column;
-      position: relative;
     }
 
     .price-card.featured {
-      transform: translateY(-11px);
-      border-color: rgba(56, 189, 248, 0.5);
-      box-shadow: 0 24px 55px rgba(56, 189, 248, 0.12);
-    }
-
-    .price-label {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      padding: 6px 9px;
-      border-radius: 999px;
-      color: var(--primary);
-      background: rgba(56, 189, 248, 0.09);
-      border: 1px solid rgba(56, 189, 248, 0.18);
-      font-size: 10px;
-      font-weight: 900;
-    }
-
-    .price-card h3 {
-      font-size: 24px;
-      margin-bottom: 9px;
-    }
-
-    .price-card > p {
-      color: var(--muted);
-      min-height: 52px;
+      border-color: rgba(56, 189, 248, 0.55);
+      transform: translateY(-12px);
     }
 
     .price {
-      font-size: 45px;
-      font-weight: 950;
-      margin: 23px 0 4px;
+      font-size: 46px;
+      font-weight: 900;
+      margin: 25px 0 6px;
     }
 
-    .price small {
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
+    .price small,
     .price-note {
       color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 23px;
+      font-size: 14px;
     }
 
     .price-list {
       list-style: none;
       display: grid;
-      gap: 12px;
-      margin-bottom: 29px;
+      gap: 13px;
+      margin: 25px 0 30px;
       flex: 1;
-    }
-
-    .price-list li {
-      color: #dbe7f3;
     }
 
     .price-list li::before {
       content: "✓";
-      color: var(--green);
-      font-weight: 950;
+      color: var(--success);
+      font-weight: 900;
       margin-right: 9px;
     }
 
     .faq-list {
-      max-width: 860px;
+      max-width: 850px;
       margin: auto;
       display: grid;
       gap: 13px;
@@ -1157,7 +611,7 @@
     .faq-item {
       border: 1px solid var(--border);
       border-radius: 17px;
-      background: rgba(255, 255, 255, 0.024);
+      background: rgba(255, 255, 255, 0.026);
       overflow: hidden;
     }
 
@@ -1165,19 +619,12 @@
       width: 100%;
       padding: 20px 22px;
       color: white;
-      border: 0;
+      border: none;
       background: transparent;
+      text-align: left;
+      font-weight: 800;
       display: flex;
       justify-content: space-between;
-      gap: 18px;
-      text-align: left;
-      font-weight: 850;
-    }
-
-    .faq-symbol {
-      color: var(--primary);
-      font-size: 22px;
-      transition: 0.25s ease;
     }
 
     .faq-answer {
@@ -1195,113 +642,64 @@
       max-height: 220px;
     }
 
-    .faq-item.active .faq-symbol {
-      transform: rotate(45deg);
+    .faq-symbol {
+      color: var(--primary);
+      font-size: 22px;
     }
 
     .cta-box {
       padding: 55px;
       border-radius: 30px;
-      border: 1px solid rgba(56, 189, 248, 0.28);
       background:
-        linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(2, 132, 199, 0.05)),
-        var(--surface);
+        linear-gradient(135deg, rgba(56, 189, 248, 0.17), rgba(2, 132, 199, 0.08)),
+        var(--card-solid);
+      border: 1px solid rgba(56, 189, 248, 0.28);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 28px;
-    }
-
-    .cta-box h2 {
-      font-size: clamp(34px, 5vw, 52px);
-      margin-bottom: 12px;
-    }
-
-    .cta-box p {
-      max-width: 650px;
-      color: var(--muted);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 45px;
-      align-items: start;
-    }
-
-    .contact-copy h2 {
-      font-size: clamp(38px, 5vw, 56px);
-      letter-spacing: -0.04em;
-      margin: 16px 0;
-    }
-
-    .contact-copy > p {
-      color: var(--muted);
-      font-size: 18px;
-      margin-bottom: 28px;
+      gap: 30px;
     }
 
     .contact-detail {
       display: flex;
       align-items: center;
-      gap: 13px;
-      color: #dce8f4;
+      gap: 14px;
     }
 
-    .contact-icon {
+    .contact-detail-icon {
       width: 42px;
       height: 42px;
       display: grid;
       place-items: center;
       border-radius: 12px;
+      background: rgba(56, 189, 248, 0.09);
       color: var(--primary);
-      background: rgba(56, 189, 248, 0.08);
-    }
-
-    .contact-card {
-      padding: 29px;
-      border-radius: 25px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      box-shadow: var(--shadow);
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
+      gap: 16px;
     }
 
     .form-group {
       display: grid;
       gap: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
 
     .form-group.full {
       grid-column: 1 / -1;
     }
 
-    .form-group label {
-      color: #dbe7f3;
-      font-size: 14px;
-      font-weight: 750;
-    }
-
     .form-control {
       width: 100%;
-      padding: 14px 15px;
-      border-radius: 13px;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.035);
       color: white;
+      border-radius: 13px;
+      padding: 14px 15px;
       outline: none;
-      transition: 0.2s ease;
-    }
-
-    .form-control:focus {
-      border-color: rgba(56, 189, 248, 0.6);
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.07);
     }
 
     textarea.form-control {
@@ -1315,61 +713,47 @@
 
     .form-message {
       display: none;
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 11px;
-      color: #b9f7ce;
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 12px;
+      color: #bff7cd;
       background: rgba(34, 197, 94, 0.09);
-      border: 1px solid rgba(34, 197, 94, 0.17);
+      border: 1px solid rgba(34, 197, 94, 0.2);
     }
 
     footer {
-      padding: 65px 0 22px;
-      background: #020812;
       border-top: 1px solid var(--border);
+      background: #050c15;
+      padding: 65px 0 22px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.5fr repeat(3, 1fr);
+      grid-template-columns: 1.4fr repeat(3, 1fr);
       gap: 35px;
-      margin-bottom: 43px;
-    }
-
-    .footer-brand p {
-      max-width: 390px;
-      margin-top: 17px;
-      color: var(--muted);
-    }
-
-    .footer-column h4 {
-      margin-bottom: 16px;
+      margin-bottom: 45px;
     }
 
     .footer-column ul {
       list-style: none;
       display: grid;
-      gap: 10px;
+      gap: 11px;
+      margin-top: 17px;
     }
 
     .footer-column a {
       color: var(--muted);
-      transition: 0.2s ease;
-    }
-
-    .footer-column a:hover {
-      color: var(--primary);
     }
 
     .footer-bottom {
-      padding-top: 22px;
       border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
+      padding-top: 22px;
       color: var(--muted);
       font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     .modal {
@@ -1380,8 +764,8 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: rgba(1, 6, 12, 0.82);
-      backdrop-filter: blur(9px);
+      background: rgba(2, 8, 15, 0.78);
+      backdrop-filter: blur(8px);
     }
 
     .modal.active {
@@ -1390,32 +774,20 @@
 
     .modal-box {
       width: min(560px, 100%);
-      padding: 30px;
       border-radius: 24px;
       border: 1px solid var(--border);
-      background: #0c192a;
-      box-shadow: var(--shadow);
+      background: #0d1a2b;
+      padding: 30px;
       position: relative;
-      animation: modalIn 0.24s ease;
-    }
-
-    @keyframes modalIn {
-      from {
-        opacity: 0;
-        transform: translateY(16px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      box-shadow: var(--shadow);
     }
 
     .modal-close {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 39px;
-      height: 39px;
+      top: 17px;
+      right: 17px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.04);
@@ -1423,19 +795,14 @@
       font-size: 21px;
     }
 
-    .modal h3 {
-      font-size: 28px;
-      margin-bottom: 7px;
-    }
-
     .modal-subtitle {
       color: var(--muted);
-      margin-bottom: 22px;
+      margin: 8px 0 24px;
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(22px);
+      transform: translateY(24px);
       transition: 0.7s ease;
     }
 
@@ -1444,17 +811,14 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 1080px) {
+    @media (max-width: 1050px) {
       .hero-grid,
-      .product-showcase,
-      .security-layout,
+      .role-layout,
       .contact-grid {
         grid-template-columns: 1fr;
       }
 
-      .app-window {
-        max-width: 850px;
-        margin: auto;
+      .dashboard-preview {
         transform: none;
       }
 
@@ -1472,7 +836,7 @@
       }
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 820px) {
       .menu-toggle {
         display: grid;
         place-items: center;
@@ -1484,8 +848,8 @@
         left: 0;
         width: 100%;
         height: calc(100vh - 78px);
-        padding: 38px;
-        background: rgba(2, 8, 18, 0.98);
+        padding: 40px;
+        background: rgba(5, 12, 21, 0.98);
         flex-direction: column;
         align-items: flex-start;
         transform: translateX(100%);
@@ -1496,24 +860,12 @@
         transform: translateX(0);
       }
 
-      .nav-links a {
-        font-size: 20px;
-      }
-
-      .nav-actions .login-link,
+      .nav-actions .nav-login,
       .nav-actions .desktop-demo {
         display: none;
       }
 
-      .app-shell {
-        grid-template-columns: 1fr;
-      }
-
-      .app-sidebar {
-        display: none;
-      }
-
-      .steps-grid {
+      .steps {
         grid-template-columns: 1fr;
       }
 
@@ -1523,13 +875,13 @@
       }
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 650px) {
       .container {
-        width: min(100% - 26px, var(--container));
+        width: min(100% - 26px, 1180px);
       }
 
       .section {
-        padding: 78px 0;
+        padding: 75px 0;
       }
 
       .hero {
@@ -1540,10 +892,6 @@
         font-size: 50px;
       }
 
-      .hero-description {
-        font-size: 17px;
-      }
-
       .hero-buttons {
         flex-direction: column;
       }
@@ -1552,28 +900,12 @@
         width: 100%;
       }
 
-      .window-address {
-        min-width: 150px;
-      }
-
-      .app-main {
-        padding: 12px;
-      }
-
-      .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .dashboard-row,
-      .module-body {
-        grid-template-columns: 1fr;
-      }
-
       .features-grid,
       .pricing-grid,
       .modules-grid,
       .footer-grid,
-      .form-grid {
+      .form-grid,
+      .stat-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1581,20 +913,8 @@
         transform: none;
       }
 
-      .cta-box {
-        padding: 35px 22px;
-      }
-
-      .contact-card {
-        padding: 22px;
-      }
-
       .form-group.full {
         grid-column: auto;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
       }
     }
   </style>
@@ -1604,23 +924,21 @@
 
   <header class="navbar">
     <div class="container nav-content">
-
       <a href="#home" class="brand">
-        <div class="brand-mark">R</div>
-        <span class="brand-word">RZN</span>
+        <div class="brand-logo">R</div>
+        <span>RZN</span>
       </a>
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#home">Home</a></li>
-        <li><a href="#platform">Platform</a></li>
+        <li><a href="#features">Features</a></li>
         <li><a href="#modules">Solutions</a></li>
-        <li><a href="#security">Security</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
 
       <div class="nav-actions">
-        <a href="#" class="login-link" onclick="showLoginMessage(event)">Login</a>
+        <a href="#" class="nav-login" onclick="showLoginMessage(event)">Login</a>
 
         <button
           type="button"
@@ -1639,7 +957,6 @@
           ☰
         </button>
       </div>
-
     </div>
   </header>
 
@@ -1648,792 +965,318 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
 
-        <div class="hero-copy reveal">
+        <div class="reveal">
           <div class="hero-badge">
-            <span class="live-dot"></span>
-            AI-powered business operating platform
+            <span class="pulse"></span>
+            Smart business management powered by AI
           </div>
 
           <h1>
-            One platform.
-            <span class="gradient-text">Total control.</span>
+            Run your business
+            <span class="gradient-text">smarter.</span>
           </h1>
 
           <p class="hero-description">
-            RZN connects sales, inventory, purchasing, finance, customers,
-            employees and intelligent reporting in one secure business system.
+            RZN brings sales, inventory, purchasing, finance, employees,
+            customers and intelligent reports together in one secure platform.
           </p>
 
           <div class="hero-buttons">
             <button type="button" class="btn btn-primary" onclick="openDemoModal()">
-              Request a Demo
-              <span>→</span>
+              Request a Demo →
             </button>
 
-            <a href="#platform" class="btn btn-secondary">
-              Explore the Platform
-            </a>
+            <a href="#features" class="btn btn-secondary">Explore Features</a>
           </div>
 
-          <div class="hero-proof">
-            <span><b class="check">✓</b> Real-time operations</span>
-            <span><b class="check">✓</b> Role-based access</span>
-            <span><b class="check">✓</b> Works across devices</span>
+          <div class="hero-points">
+            <span><b class="check">✓</b> Easy setup</span>
+            <span><b class="check">✓</b> Secure role-based access</span>
+            <span><b class="check">✓</b> Works on all devices</span>
           </div>
         </div>
 
-        <div class="app-window reveal">
+        <div class="dashboard-preview reveal">
+          <div class="preview-top">
+            <div class="preview-title">
+              <div class="brand-logo">R</div>
+              Business Overview
+            </div>
+            <div class="status">● Live</div>
+          </div>
 
-          <div class="window-topbar">
-            <div class="window-dots">
-              <span></span>
-              <span></span>
-              <span></span>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <small>Today’s Sales</small>
+              <strong>$12,480</strong>
+              <div class="positive">+18.4% this week</div>
             </div>
 
-            <div class="window-address">app.rznlb.com/dashboard</div>
+            <div class="stat-card">
+              <small>Net Profit</small>
+              <strong>$4,270</strong>
+              <div class="positive">+11.2% this month</div>
+            </div>
 
-            <div style="width: 40px;"></div>
+            <div class="stat-card">
+              <small>Active Orders</small>
+              <strong>148</strong>
+              <div class="positive">24 awaiting delivery</div>
+            </div>
+
+            <div class="stat-card">
+              <small>Low Stock Items</small>
+              <strong>7</strong>
+              <div class="positive">AI alerts enabled</div>
+            </div>
           </div>
 
-          <div class="app-shell">
+          <div class="chart-box">
+            <div class="chart-header">
+              <strong>Sales Performance</strong>
+              <span>Last 7 days</span>
+            </div>
 
-            <aside class="app-sidebar">
-              <div class="mini-brand">
-                <div class="brand-mark">R</div>
-                RZN
-              </div>
-
-              <div class="app-nav">
-                <div class="app-nav-item active">▦ Dashboard</div>
-                <div class="app-nav-item">◎ Customers</div>
-                <div class="app-nav-item">◇ Products</div>
-                <div class="app-nav-item">↗ Sales</div>
-                <div class="app-nav-item">▤ Purchases</div>
-                <div class="app-nav-item">$ Finance</div>
-                <div class="app-nav-item">👥 Employees</div>
-                <div class="app-nav-item">✦ AI Reports</div>
-              </div>
-            </aside>
-
-            <section class="app-main">
-
-              <div class="app-header">
-                <div>
-                  <h3>Business Dashboard</h3>
-                  <p>Live overview of operations and performance</p>
-                </div>
-
-                <div class="owner-chip">
-                  <div class="owner-avatar">RN</div>
-                  <span>Owner</span>
-                </div>
-              </div>
-
-              <div class="kpi-grid">
-                <div class="kpi-card">
-                  <div class="kpi-label">Sales Today</div>
-                  <div class="kpi-value">$12,480</div>
-                  <div class="kpi-change">+18.4% this week</div>
-                </div>
-
-                <div class="kpi-card">
-                  <div class="kpi-label">Net Profit</div>
-                  <div class="kpi-value">$4,270</div>
-                  <div class="kpi-change">+11.2% this month</div>
-                </div>
-
-                <div class="kpi-card">
-                  <div class="kpi-label">Receivables</div>
-                  <div class="kpi-value">$8,940</div>
-                  <div class="kpi-change">16 open invoices</div>
-                </div>
-
-                <div class="kpi-card">
-                  <div class="kpi-label">Low Stock</div>
-                  <div class="kpi-value">7</div>
-                  <div class="kpi-change">AI alerts active</div>
-                </div>
-              </div>
-
-              <div class="dashboard-row">
-
-                <div class="panel">
-                  <div class="panel-heading">
-                    <strong>Sales Performance</strong>
-                    <span>Last 7 days</span>
-                  </div>
-
-                  <div class="chart-area">
-                    <div class="chart-column"><span style="height: 42%;"></span></div>
-                    <div class="chart-column"><span style="height: 56%;"></span></div>
-                    <div class="chart-column"><span style="height: 49%;"></span></div>
-                    <div class="chart-column"><span style="height: 72%;"></span></div>
-                    <div class="chart-column"><span style="height: 65%;"></span></div>
-                    <div class="chart-column"><span style="height: 87%;"></span></div>
-                    <div class="chart-column"><span style="height: 100%;"></span></div>
-                  </div>
-                </div>
-
-                <div class="panel">
-                  <div class="panel-heading">
-                    <strong>Smart Alerts</strong>
-                    <span>Live</span>
-                  </div>
-
-                  <div class="alerts">
-                    <div class="alert-row">
-                      <div class="alert-title">
-                        <span class="alert-dot red"></span>
-                        Low stock detected
-                      </div>
-                      <small>7 products need attention</small>
-                    </div>
-
-                    <div class="alert-row">
-                      <div class="alert-title">
-                        <span class="alert-dot yellow"></span>
-                        Invoice due soon
-                      </div>
-                      <small>3 customer balances due today</small>
-                    </div>
-
-                    <div class="alert-row">
-                      <div class="alert-title">
-                        <span class="alert-dot green"></span>
-                        Sales target reached
-                      </div>
-                      <small>Weekly target exceeded by 8%</small>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="panel">
-                <div class="panel-heading">
-                  <strong>Recent Transactions</strong>
-                  <span>View all</span>
-                </div>
-
-                <table class="transactions">
-                  <thead>
-                    <tr>
-                      <th>Invoice</th>
-                      <th>Customer</th>
-                      <th>Payment</th>
-                      <th>Total</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>RZN-1048</td>
-                      <td>North Market</td>
-                      <td>Bank</td>
-                      <td>$1,240</td>
-                      <td><span class="pill paid">Paid</span></td>
-                    </tr>
-
-                    <tr>
-                      <td>RZN-1047</td>
-                      <td>Prime Foods</td>
-                      <td>Credit</td>
-                      <td>$860</td>
-                      <td><span class="pill pending">Pending</span></td>
-                    </tr>
-
-                    <tr>
-                      <td>RZN-1046</td>
-                      <td>Walk-in Customer</td>
-                      <td>Cash</td>
-                      <td>$320</td>
-                      <td><span class="pill paid">Paid</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-            </section>
+            <div class="bars">
+              <div class="bar" style="height:42%"></div>
+              <div class="bar" style="height:58%"></div>
+              <div class="bar" style="height:49%"></div>
+              <div class="bar" style="height:72%"></div>
+              <div class="bar" style="height:66%"></div>
+              <div class="bar" style="height:89%"></div>
+              <div class="bar" style="height:100%"></div>
+            </div>
           </div>
-
         </div>
 
       </div>
     </section>
 
-    <section class="trusted-strip">
+    <section class="trusted">
       <div class="container trusted-content">
-        <span>Built for <strong>retail</strong></span>
-        <span>Built for <strong>wholesale</strong></span>
         <span>Built for <strong>restaurants</strong></span>
+        <span>Built for <strong>retail</strong></span>
         <span>Built for <strong>factories</strong></span>
+        <span>Built for <strong>wholesalers</strong></span>
         <span>Built for <strong>service companies</strong></span>
       </div>
     </section>
 
-    <section class="section" id="platform">
+    <section class="section" id="features">
       <div class="container">
-
         <div class="section-heading reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Complete Business Platform
-          </span>
-
+          <span class="eyebrow">Powerful Features</span>
           <h2>
-            Everything your operation needs,
-            <span class="gradient-text">connected in real time.</span>
+            Everything your company needs,
+            <span class="gradient-text">in one platform.</span>
           </h2>
-
           <p>
-            Replace disconnected tools with one system built to give owners
-            clarity, control and faster decisions.
+            Stop switching between different systems. RZN organizes your
+            complete business operation in one connected workspace.
           </p>
         </div>
 
         <div class="features-grid">
-
           <article class="feature-card reveal">
             <div class="icon-box">✦</div>
             <h3>AI Business Insights</h3>
-            <p>
-              Detect trends, risks and opportunities through intelligent
-              analysis of sales, stock and financial performance.
-            </p>
+            <p>Turn your business data into recommendations, warnings and growth opportunities.</p>
           </article>
 
           <article class="feature-card reveal">
             <div class="icon-box">▦</div>
             <h3>Real-Time Inventory</h3>
-            <p>
-              Track stock levels, product movements, purchase costs and
-              automatic low-stock alerts across your business.
-            </p>
+            <p>Track every product, warehouse movement, purchase and low-stock alert.</p>
           </article>
 
           <article class="feature-card reveal">
             <div class="icon-box">$</div>
-            <h3>Financial Control</h3>
-            <p>
-              Monitor cash, bank activity, customer balances, supplier debts,
-              expenses and profit from one dashboard.
-            </p>
+            <h3>Financial Management</h3>
+            <p>Monitor invoices, expenses, receivables, payables, cash flow and profit.</p>
           </article>
 
           <article class="feature-card reveal">
             <div class="icon-box">◎</div>
             <h3>Sales and Orders</h3>
-            <p>
-              Create invoices quickly, manage payment methods and follow every
-              sale from order entry to final payment.
-            </p>
+            <p>Create orders quickly and understand sales performance in real time.</p>
           </article>
 
           <article class="feature-card reveal">
             <div class="icon-box">👥</div>
-            <h3>Team Permissions</h3>
-            <p>
-              Give each employee access only to the pages and information
-              required for their role.
-            </p>
+            <h3>Employee Roles</h3>
+            <p>Each employee sees only the information required for their assigned role.</p>
           </article>
 
           <article class="feature-card reveal">
             <div class="icon-box">▤</div>
             <h3>Automated Reports</h3>
-            <p>
-              Generate daily, weekly and monthly summaries without manually
-              collecting information from different departments.
-            </p>
+            <p>Receive daily, weekly and monthly reports without manual collection.</p>
           </article>
-
         </div>
       </div>
     </section>
 
-    <section class="section section-alt">
-      <div class="container product-showcase">
-
-        <div class="showcase-copy reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Designed for Daily Operations
-          </span>
-
-          <h2>
-            From invoice to insight,
-            <span class="gradient-text">without losing control.</span>
-          </h2>
-
-          <p>
-            RZN keeps the operational workflow simple for employees while
-            giving owners a complete view of the business.
-          </p>
-
-          <div class="benefit-list">
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div>
-                <strong>Fast invoice creation</strong><br>
-                <span style="color: var(--muted);">Sales, discounts, taxes, services and payment status.</span>
-              </div>
-            </div>
-
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div>
-                <strong>Automatic stock updates</strong><br>
-                <span style="color: var(--muted);">Every sale and purchase updates inventory instantly.</span>
-              </div>
-            </div>
-
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div>
-                <strong>Connected financial records</strong><br>
-                <span style="color: var(--muted);">Credit invoices move directly to receivables and payables.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="module-window reveal">
-
-          <div class="module-toolbar">
-            <div class="module-tabs">
-              <div class="module-tab active">New Sale</div>
-              <div class="module-tab">Invoices</div>
-              <div class="module-tab">Customers</div>
-            </div>
-
-            <button class="new-sale-btn">+ Add Item</button>
-          </div>
-
-          <div class="module-body">
-
-            <div class="mini-table-card">
-              <h4>Sale Items</h4>
-
-              <table class="mini-table">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr>
-                    <td>Premium Product A</td>
-                    <td>4</td>
-                    <td>$48</td>
-                    <td>$192</td>
-                  </tr>
-
-                  <tr>
-                    <td>Premium Product B</td>
-                    <td>2</td>
-                    <td>$75</td>
-                    <td>$150</td>
-                  </tr>
-
-                  <tr>
-                    <td>Service Charge</td>
-                    <td>1</td>
-                    <td>$30</td>
-                    <td>$30</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="invoice-card">
-              <h4>Invoice Summary</h4>
-
-              <div class="invoice-summary">
-                <div class="invoice-row">
-                  <span>Subtotal</span>
-                  <strong>$372</strong>
-                </div>
-
-                <div class="invoice-row">
-                  <span>Discount</span>
-                  <strong>-$12</strong>
-                </div>
-
-                <div class="invoice-row">
-                  <span>Tax</span>
-                  <strong>$18</strong>
-                </div>
-
-                <div class="invoice-row">
-                  <span>Payment</span>
-                  <strong>Bank</strong>
-                </div>
-
-                <div class="invoice-row invoice-total">
-                  <span>Total</span>
-                  <strong>$378</strong>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section" id="modules">
+    <section class="section section-alt" id="modules">
       <div class="container">
-
         <div class="section-heading reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Connected Modules
-          </span>
-
+          <span class="eyebrow">Complete Business System</span>
           <h2>
-            One platform for every
-            <span class="gradient-text">business department.</span>
+            Manage every department
+            <span class="gradient-text">with RZN.</span>
           </h2>
         </div>
 
         <div class="modules-grid">
-          <div class="module-card reveal"><div class="module-icon">🛒</div><h3>Orders</h3><p>Create and follow customer orders.</p></div>
-          <div class="module-card reveal"><div class="module-icon">📦</div><h3>Inventory</h3><p>Track stock and product movements.</p></div>
-          <div class="module-card reveal"><div class="module-icon">📈</div><h3>Sales</h3><p>Invoices, payments and performance.</p></div>
-          <div class="module-card reveal"><div class="module-icon">🧾</div><h3>Purchasing</h3><p>Suppliers and purchase invoices.</p></div>
-          <div class="module-card reveal"><div class="module-icon">💳</div><h3>Finance</h3><p>Cash, bank, debts and profit.</p></div>
-          <div class="module-card reveal"><div class="module-icon">👤</div><h3>Employees</h3><p>Users, roles and permissions.</p></div>
-          <div class="module-card reveal"><div class="module-icon">🤝</div><h3>Customers</h3><p>Records, balances and history.</p></div>
-          <div class="module-card reveal"><div class="module-icon">🧠</div><h3>AI Reports</h3><p>Intelligent analysis and alerts.</p></div>
+          <div class="module reveal"><div class="module-icon">🛒</div><h3>Orders</h3><p>Create and track customer orders.</p></div>
+          <div class="module reveal"><div class="module-icon">📦</div><h3>Warehouse</h3><p>Manage stock and product movements.</p></div>
+          <div class="module reveal"><div class="module-icon">📈</div><h3>Sales</h3><p>Monitor performance and revenue.</p></div>
+          <div class="module reveal"><div class="module-icon">🧾</div><h3>Purchasing</h3><p>Manage suppliers and invoices.</p></div>
+          <div class="module reveal"><div class="module-icon">💳</div><h3>Finance</h3><p>Track payments, expenses and profits.</p></div>
+          <div class="module reveal"><div class="module-icon">👤</div><h3>Employees</h3><p>Control users, roles and permissions.</p></div>
+          <div class="module reveal"><div class="module-icon">🤝</div><h3>Customers</h3><p>Keep customer records and balances.</p></div>
+          <div class="module reveal"><div class="module-icon">🧠</div><h3>AI Reports</h3><p>Understand your business automatically.</p></div>
         </div>
-
-      </div>
-    </section>
-
-    <section class="section section-alt" id="security">
-      <div class="container security-layout">
-
-        <div class="roles-panel reveal">
-
-          <div class="role-row">
-            <div class="role-avatar">O</div>
-            <div>
-              <strong>Company Owner</strong>
-              <small>Complete visibility and full control</small>
-            </div>
-          </div>
-
-          <div class="role-row">
-            <div class="role-avatar">F</div>
-            <div>
-              <strong>Financial Manager</strong>
-              <small>Invoices, balances and financial reports</small>
-            </div>
-          </div>
-
-          <div class="role-row">
-            <div class="role-avatar">W</div>
-            <div>
-              <strong>Warehouse Manager</strong>
-              <small>Stock, purchasing and low-stock alerts</small>
-            </div>
-          </div>
-
-          <div class="role-row">
-            <div class="role-avatar">S</div>
-            <div>
-              <strong>Sales Employee</strong>
-              <small>Orders and customer sales only</small>
-            </div>
-          </div>
-
-          <div class="role-row">
-            <div class="role-avatar">C</div>
-            <div>
-              <strong>Cashier</strong>
-              <small>Fast order entry and payment recording</small>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="security-copy reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Security and Permissions
-          </span>
-
-          <h2>
-            The right access for
-            <span class="gradient-text">the right employee.</span>
-          </h2>
-
-          <p>
-            Protect private business information by controlling exactly what
-            each employee can view, create, edit and approve.
-          </p>
-
-          <div class="benefit-list">
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div>Secure user login</div>
-            </div>
-
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div>Custom roles and permissions</div>
-            </div>
-
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div>Protected financial information</div>
-            </div>
-
-            <div class="benefit-item">
-              <div class="benefit-check">✓</div>
-              <div>Controlled access across devices</div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-
         <div class="section-heading reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Simple Setup
-          </span>
-
+          <span class="eyebrow">How It Works</span>
           <h2>
             Start managing your business
             <span class="gradient-text">in three steps.</span>
           </h2>
         </div>
 
-        <div class="steps-grid">
-
-          <div class="step-card reveal">
+        <div class="steps">
+          <div class="step reveal">
             <div class="step-number">1</div>
             <h3>Create Your Company</h3>
-            <p>
-              Add company details, products, customers, suppliers and branches.
-            </p>
+            <p>Add company details, products, suppliers and customers.</p>
           </div>
 
-          <div class="step-card reveal">
+          <div class="step reveal">
             <div class="step-number">2</div>
             <h3>Add Your Team</h3>
-            <p>
-              Create employee accounts and give each person the correct access.
-            </p>
+            <p>Create employee accounts and assign correct permissions.</p>
           </div>
 
-          <div class="step-card reveal">
+          <div class="step reveal">
             <div class="step-number">3</div>
-            <h3>Run and Improve</h3>
-            <p>
-              Follow operations, monitor results and make faster decisions.
-            </p>
+            <h3>Run and Grow</h3>
+            <p>Follow operations and use AI reports to make better decisions.</p>
           </div>
-
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" id="pricing">
+    <section class="section section-alt">
+      <div class="container role-layout">
+        <div class="role-panel reveal">
+          <div class="role-item"><div class="role-avatar">O</div><div><strong>Company Owner</strong><br><small>Full control</small></div></div>
+          <div class="role-item"><div class="role-avatar">F</div><div><strong>Financial Manager</strong><br><small>Invoices and reports</small></div></div>
+          <div class="role-item"><div class="role-avatar">W</div><div><strong>Warehouse Manager</strong><br><small>Stock and alerts</small></div></div>
+          <div class="role-item"><div class="role-avatar">S</div><div><strong>Sales Employee</strong><br><small>Orders and sales</small></div></div>
+          <div class="role-item"><div class="role-avatar">C</div><div><strong>Cashier</strong><br><small>Orders and payments</small></div></div>
+        </div>
+
+        <div class="role-copy reveal">
+          <span class="eyebrow">Security and Privacy</span>
+          <h2>
+            The right information for
+            <span class="gradient-text">the right employee.</span>
+          </h2>
+          <p>Protect your company by controlling what every employee can see, edit and approve.</p>
+
+          <div class="role-benefits">
+            <span><b class="check">✓</b> Secure login for every user</span>
+            <span><b class="check">✓</b> Custom roles and permissions</span>
+            <span><b class="check">✓</b> Activity tracking</span>
+            <span><b class="check">✓</b> Data protection across devices</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
       <div class="container">
-
         <div class="section-heading reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Flexible Plans
-          </span>
-
+          <span class="eyebrow">Pricing</span>
           <h2>
             Plans designed to grow
             <span class="gradient-text">with your business.</span>
           </h2>
-
-          <p>
-            Pricing shown below is for presentation and can be updated before launch.
-          </p>
         </div>
 
         <div class="pricing-grid">
-
           <article class="price-card reveal">
             <h3>Starter</h3>
-            <p>For small businesses beginning their digital transformation.</p>
-
+            <p>For small companies starting their digital transformation.</p>
             <div class="price">$29 <small>/ month</small></div>
             <div class="price-note">One company, one branch</div>
-
             <ul class="price-list">
               <li>Up to 5 users</li>
-              <li>Sales and orders</li>
+              <li>Orders and sales</li>
               <li>Basic inventory</li>
               <li>Financial overview</li>
-              <li>Email support</li>
             </ul>
-
-            <button
-              type="button"
-              class="btn btn-secondary btn-full"
-              onclick="openDemoModal('Starter')"
-            >
-              Request Starter Demo
-            </button>
+            <button class="btn btn-secondary btn-full" onclick="openDemoModal('Starter')">Start with Starter</button>
           </article>
 
           <article class="price-card featured reveal">
-            <div class="price-label">MOST POPULAR</div>
-
             <h3>Business</h3>
-            <p>For growing companies that need full operational control.</p>
-
+            <p>For growing companies that need full control and automation.</p>
             <div class="price">$79 <small>/ month</small></div>
             <div class="price-note">Up to three branches</div>
-
             <ul class="price-list">
               <li>Up to 25 users</li>
               <li>All management modules</li>
               <li>Advanced permissions</li>
               <li>AI reports and alerts</li>
-              <li>Priority support</li>
             </ul>
-
-            <button
-              type="button"
-              class="btn btn-primary btn-full"
-              onclick="openDemoModal('Business')"
-            >
-              Request Business Demo
-            </button>
+            <button class="btn btn-primary btn-full" onclick="openDemoModal('Business')">Choose Business</button>
           </article>
 
           <article class="price-card reveal">
             <h3>Enterprise</h3>
-            <p>For larger companies with advanced operational needs.</p>
-
+            <p>For large companies with advanced operational requirements.</p>
             <div class="price">Custom</div>
-            <div class="price-note">Tailored to your operation</div>
-
+            <div class="price-note">Tailored to your company</div>
             <ul class="price-list">
               <li>Unlimited users</li>
               <li>Multiple branches</li>
               <li>Custom integrations</li>
-              <li>Advanced security</li>
               <li>Dedicated support</li>
             </ul>
-
-            <button
-              type="button"
-              class="btn btn-secondary btn-full"
-              onclick="openDemoModal('Enterprise')"
-            >
-              Contact RZN
-            </button>
+            <button class="btn btn-secondary btn-full" onclick="openDemoModal('Enterprise')">Contact Sales</button>
           </article>
-
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-alt">
       <div class="container">
-
         <div class="section-heading reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Frequently Asked Questions
-          </span>
-
+          <span class="eyebrow">Frequently Asked Questions</span>
           <h2>Questions about RZN</h2>
         </div>
 
         <div class="faq-list">
-
           <div class="faq-item reveal">
-            <button type="button" class="faq-question">
-              Does RZN work on phones, tablets and computers?
-              <span class="faq-symbol">+</span>
-            </button>
-
-            <div class="faq-answer">
-              <p>
-                Yes. RZN is designed to support computers, tablets and mobile
-                devices so each employee can use the right device for their role.
-              </p>
-            </div>
+            <button class="faq-question">Does RZN work on phones and computers?<span class="faq-symbol">+</span></button>
+            <div class="faq-answer"><p>Yes. RZN is designed for computers, tablets and mobile phones.</p></div>
           </div>
 
           <div class="faq-item reveal">
-            <button type="button" class="faq-question">
-              Can each employee have different permissions?
-              <span class="faq-symbol">+</span>
-            </button>
-
-            <div class="faq-answer">
-              <p>
-                Yes. The company owner can control which pages and actions are
-                available to every employee.
-              </p>
-            </div>
+            <button class="faq-question">Can each employee have different permissions?<span class="faq-symbol">+</span></button>
+            <div class="faq-answer"><p>Yes. The owner controls exactly what every employee can see or edit.</p></div>
           </div>
 
           <div class="faq-item reveal">
-            <button type="button" class="faq-question">
-              Can RZN manage multiple branches?
-              <span class="faq-symbol">+</span>
-            </button>
-
-            <div class="faq-answer">
-              <p>
-                Multi-branch management is planned for suitable RZN plans,
-                allowing owners to monitor branches from one dashboard.
-              </p>
-            </div>
+            <button class="faq-question">Is the system available now?<span class="faq-symbol">+</span></button>
+            <div class="faq-answer"><p>RZN is currently under development. Businesses can request a demo or join early access.</p></div>
           </div>
-
-          <div class="faq-item reveal">
-            <button type="button" class="faq-question">
-              Does RZN include artificial intelligence?
-              <span class="faq-symbol">+</span>
-            </button>
-
-            <div class="faq-answer">
-              <p>
-                RZN is designed to use AI for analysis, alerts,
-                recommendations and intelligent business reporting.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item reveal">
-            <button type="button" class="faq-question">
-              How can I request a demo?
-              <span class="faq-symbol">+</span>
-            </button>
-
-            <div class="faq-answer">
-              <p>
-                Complete the demo request form and your email application will
-                open with all information prepared for RZN.
-              </p>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -2441,31 +1284,22 @@
     <section class="section">
       <div class="container">
         <div class="cta-box reveal">
-
           <div>
-            <h2>Ready to see RZN in action?</h2>
-            <p>
-              Send your company information and request a presentation of the
-              RZN business management platform.
-            </p>
+            <h2>Ready to transform your business?</h2>
+            <p>Join the RZN early-access list and be among the first companies to experience smarter management.</p>
           </div>
 
           <button type="button" class="btn btn-primary" onclick="openDemoModal()">
             Request Demo
           </button>
-
         </div>
       </div>
     </section>
 
     <section class="section section-alt" id="contact">
       <div class="container contact-grid">
-
         <div class="contact-copy reveal">
-          <span class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Contact RZN
-          </span>
+          <span class="eyebrow">Contact RZN</span>
 
           <h2>
             Let’s discuss your
@@ -2473,55 +1307,40 @@
           </h2>
 
           <p>
-            Tell us about your company and the operational challenges you want
-            RZN to help you manage.
+            Send us information about your company and we will contact you by email.
           </p>
 
-          <div class="contact-detail">
-            <div class="contact-icon">✉</div>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-detail-icon">✉</div>
+              <a href="mailto:rznlb.2026@gmail.com">
+                rznlb.2026@gmail.com
+              </a>
+            </div>
 
-            <a href="mailto:rznlb.2026@gmail.com">
-              rznlb.2026@gmail.com
-            </a>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">⌂</div>
+              <span>Akkar, Lebanon</span>
+            </div>
           </div>
         </div>
 
         <div class="contact-card reveal">
           <form id="contactForm">
-
             <div class="form-grid">
-
               <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input
-                  type="text"
-                  id="fullName"
-                  class="form-control"
-                  placeholder="Your name"
-                  required
-                >
+                <input type="text" id="fullName" class="form-control" required>
               </div>
 
               <div class="form-group">
                 <label for="companyName">Company Name</label>
-                <input
-                  type="text"
-                  id="companyName"
-                  class="form-control"
-                  placeholder="Your company"
-                  required
-                >
+                <input type="text" id="companyName" class="form-control" required>
               </div>
 
               <div class="form-group full">
                 <label for="email">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  class="form-control"
-                  placeholder="name@company.com"
-                  required
-                >
+                <input type="email" id="email" class="form-control" required>
               </div>
 
               <div class="form-group full">
@@ -2539,14 +1358,8 @@
 
               <div class="form-group full">
                 <label for="message">How can RZN help?</label>
-                <textarea
-                  id="message"
-                  class="form-control"
-                  placeholder="Tell us about your company..."
-                  required
-                ></textarea>
+                <textarea id="message" class="form-control" required></textarea>
               </div>
-
             </div>
 
             <button type="submit" class="btn btn-primary btn-full">
@@ -2556,10 +1369,8 @@
             <div class="form-message" id="formMessage">
               Your email request is ready.
             </div>
-
           </form>
         </div>
-
       </div>
     </section>
 
@@ -2567,27 +1378,24 @@
 
   <footer>
     <div class="container">
-
       <div class="footer-grid">
-
         <div class="footer-brand">
           <a href="#home" class="brand">
-            <div class="brand-mark">R</div>
-            <span class="brand-word">RZN</span>
+            <div class="brand-logo">R</div>
+            <span>RZN</span>
           </a>
 
           <p>
-            A smarter business management platform for connected operations,
-            secure teams, financial control and intelligent reporting.
+            RZN is building a smarter way for companies to manage operations,
+            teams, finances and growth using modern technology and AI.
           </p>
         </div>
 
         <div class="footer-column">
-          <h4>Platform</h4>
+          <h4>Product</h4>
           <ul>
-            <li><a href="#platform">Features</a></li>
+            <li><a href="#features">Features</a></li>
             <li><a href="#modules">Solutions</a></li>
-            <li><a href="#security">Security</a></li>
             <li><a href="#pricing">Pricing</a></li>
           </ul>
         </div>
@@ -2598,7 +1406,6 @@
             <li><a href="#home">About RZN</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#contact">Early Access</a></li>
-            <li><a href="#" onclick="showLoginMessage(event)">Login</a></li>
           </ul>
         </div>
 
@@ -2612,68 +1419,39 @@
             </li>
           </ul>
         </div>
-
       </div>
 
       <div class="footer-bottom">
         <span>© <span id="currentYear"></span> RZN. All rights reserved.</span>
         <span>AI Business Management Platform</span>
       </div>
-
     </div>
   </footer>
 
   <div class="modal" id="demoModal">
     <div class="modal-box">
-
-      <button
-        type="button"
-        class="modal-close"
-        onclick="closeDemoModal()"
-        aria-label="Close"
-      >
-        ×
-      </button>
+      <button type="button" class="modal-close" onclick="closeDemoModal()">×</button>
 
       <h3>Request an RZN Demo</h3>
 
       <p class="modal-subtitle">
-        Complete the details below and send your request to RZN by email.
+        Complete the information below and send your request to RZN by email.
       </p>
 
       <form id="demoForm">
-
         <div class="form-group">
           <label for="demoName">Full Name</label>
-          <input
-            type="text"
-            id="demoName"
-            class="form-control"
-            placeholder="Your full name"
-            required
-          >
+          <input type="text" id="demoName" class="form-control" required>
         </div>
 
         <div class="form-group">
           <label for="demoCompany">Company Name</label>
-          <input
-            type="text"
-            id="demoCompany"
-            class="form-control"
-            placeholder="Your company name"
-            required
-          >
+          <input type="text" id="demoCompany" class="form-control" required>
         </div>
 
         <div class="form-group">
           <label for="demoEmail">Email Address</label>
-          <input
-            type="email"
-            id="demoEmail"
-            class="form-control"
-            placeholder="name@company.com"
-            required
-          >
+          <input type="email" id="demoEmail" class="form-control" required>
         </div>
 
         <div class="form-group">
@@ -2682,4 +1460,145 @@
             <option value="General Demo">General Demo</option>
             <option value="Starter">Starter</option>
             <option value="Business">Business</option>
-            <option v
+            <option value="Enterprise">Enterprise</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">
+          Send Demo Request by Email
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const RZN_EMAIL = "rznlb.2026@gmail.com";
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const demoModal = document.getElementById("demoModal");
+    const demoPlan = document.getElementById("demoPlan");
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+      document.body.classList.toggle("menu-open");
+      menuToggle.textContent =
+        navLinks.classList.contains("active") ? "×" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    function openDemoModal(plan = "General Demo") {
+      demoModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+      demoPlan.value = plan;
+    }
+
+    function closeDemoModal() {
+      demoModal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    demoModal.addEventListener("click", function (event) {
+      if (event.target === demoModal) {
+        closeDemoModal();
+      }
+    });
+
+    function showLoginMessage(event) {
+      event.preventDefault();
+      alert("The RZN login system is currently under development.");
+    }
+
+    document.querySelectorAll(".faq-question").forEach(function (button) {
+      button.addEventListener("click", function () {
+        button.parentElement.classList.toggle("active");
+      });
+    });
+
+    document.getElementById("demoForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("demoName").value.trim();
+      const company = document.getElementById("demoCompany").value.trim();
+      const email = document.getElementById("demoEmail").value.trim();
+      const plan = document.getElementById("demoPlan").value;
+
+      const subject = encodeURIComponent("RZN Demo Request - " + company);
+
+      const body = encodeURIComponent(
+        "Hello RZN,\n\n" +
+        "I would like to request a demo.\n\n" +
+        "Name: " + name + "\n" +
+        "Company: " + company + "\n" +
+        "Email: " + email + "\n" +
+        "Interested Plan: " + plan
+      );
+
+      window.location.href =
+        "mailto:" + RZN_EMAIL +
+        "?subject=" + subject +
+        "&body=" + body;
+
+      closeDemoModal();
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("fullName").value.trim();
+      const company = document.getElementById("companyName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const type = document.getElementById("businessType").value;
+      const message = document.getElementById("message").value.trim();
+
+      const subject = encodeURIComponent("RZN Business Request - " + company);
+
+      const body = encodeURIComponent(
+        "Hello RZN,\n\n" +
+        "I am interested in RZN.\n\n" +
+        "Name: " + name + "\n" +
+        "Company: " + company + "\n" +
+        "Email: " + email + "\n" +
+        "Business Type: " + type + "\n\n" +
+        "Message:\n" + message
+      );
+
+      document.getElementById("formMessage").style.display = "block";
+
+      window.location.href =
+        "mailto:" + RZN_EMAIL +
+        "?subject=" + subject +
+        "&body=" + body;
+    });
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealElements.forEach(function (element) {
+      revealObserver.observe(element);
+    });
+  </script>
+
+</body>
+</html>
